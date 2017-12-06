@@ -1,0 +1,17 @@
+{
+  "Db.Allot.DeclarationData.Amount": "件数",
+  "Db.Allot.DeclarationData.ApplicationUnit": "申报单位",
+  "Db.Allot.DeclarationData.Description": "品名",
+  "Db.Allot.DeclarationData.EntityPlural": "运单信息",
+  "Db.Allot.DeclarationData.EntitySingular": "运单信息",
+  "Db.Allot.DeclarationData.IsChecked": "是否已到货",
+  "Db.Allot.DeclarationData.MasterAwb": "主单号",
+  "Db.Allot.DeclarationData.SubAwb": "分单号",
+  "Db.Allot.DeclarationData.Weight": "重量",
+  "Navigation.Allot": "盘点",
+  "Navigation.Allot/Declaration Data": "运单信息",
+  "Permission.Allot:DeclarationData:": "运单信息",
+  "Permission.Allot:DeclarationData:Delete": "删除",
+  "Permission.Allot:DeclarationData:Modify": "修改",
+  "Permission.Allot:DeclarationData:View": "查看"
+}
