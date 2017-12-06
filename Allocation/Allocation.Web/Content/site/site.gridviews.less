@@ -1,0 +1,96 @@
+@import "site.mixins.less";
+
+.view-switch {
+    position: relative;
+    top: -12px;
+}
+
+.card-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #ecf0f5;
+
+    .card-items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .card-item {
+        flex: 0 1 calc(~"100% - 4px");
+        padding: 8px;
+        background-color: #fff;
+        box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+        height: 130px;
+        overflow: hidden;
+        margin: 6px;
+        
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        td {
+            padding: 4px;
+        }
+
+        td.img {
+            width: 116px;
+        }
+
+        td.img img {
+            width: 100px;
+        }
+
+        .name {
+            font-weight: bold;
+        }
+    }
+}
+
+@media(min-width: 900px) {
+    .card-container .card-item { flex-basis: calc(~"50% - 12px"); }
+}
+
+@media(min-width: 1600px) {
+    .card-container .card-item { flex-basis: calc(~"33% - 12px"); }
+}
+
+.favorite-views {
+    margin-right: 4px;
+    position: relative;
+    top: -12px;
+
+    ul {
+        font-size: 12px;
+        width: 150px;
+        min-width: 150px;
+    }
+
+    li.save {
+        padding: 6px;
+
+        input {
+            margin-top: 2px;
+            width: 126px;
+        }
+
+        button {
+           margin-top: 4px; 
+           font-size: 12px;
+        }
+    }
+
+    li.fav {
+        position: relative;
+        padding-right: 16px;
+    }
+
+    i.fa-trash-o {
+        cursor: pointer;
+        position: absolute;
+        right: 4px;
+        top: 5px;
+        color: maroon;
+    }
+}
