@@ -1,6 +1,10 @@
 ﻿
+using System;
+using System.IO;
 using System.Text;
 using Allocation.Modules.Common;
+using Serenity.Reporting;
+using Serenity.Web;
 
 namespace Allocation.Allot.Endpoints
 {
@@ -44,6 +48,27 @@ namespace Allocation.Allot.Endpoints
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyRepository().List(connection, request);
+        }
+
+        public FileContentResult ListExcel(IDbConnection connection, ListRequest request)
+        {
+            var data = List(connection, request).Entities;
+            var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.DeclarationDataColumns));
+            var bytes = new ReportRepository().Render(report);
+            return ExcelContentResult.Create(bytes, "DeclarationData_" +
+                                                    DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
+        }
+
+        public FileContentResult ExcelTemplate(IDbConnection connection, ListRequest request)
+        {
+            FileInfo file = new FileInfo(Server.MapPath("~/ExcelTemplate/Template.xlsx"));
+            using (FileStream fs = file.OpenRead())
+            {
+                BinaryReader r = new BinaryReader(fs);
+                r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
+                byte[] bytes = r.ReadBytes((int)r.BaseStream.Length);
+                return ExcelContentResult.Create(bytes, "Template.xlsx");
+            }
         }
 
         [HttpPost, AuthorizeDelete(typeof(MyRow))]

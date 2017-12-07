@@ -42,6 +42,7 @@ namespace MVC
             public static class Dashboard
             {
                 public const string DashboardIndex = "~/Modules/Common/Dashboard/DashboardIndex.cshtml";
+                public const string DashboardIndexbak = "~/Modules/Common/Dashboard/DashboardIndexbak.cshtml";
             }
 
             public static class Mail

@@ -513,13 +513,16 @@
     <Content Include="Content\serenity\images\xml.png" />
     <Content Include="Content\serenity\images\zones-stack.png" />
     <Content Include="Content\serenity\images\zoom.png" />
+    <Content Include="Content\serenity\myimages\flight.png" />
     <Content Include="Content\serenity\myimages\nochecked.png" />
     <Content Include="Content\serenity\myimages\checked.png" />
     <Content Include="Content\serenity\myimages\checked16.png" />
     <Content Include="Content\serenity\myimages\nochecked16.png" />
+    <Content Include="Content\serenity\myimages\overchecked.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\site\images\accordion-arrows.png" />
+    <Content Include="Content\site\slides\deallbg.png" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -608,6 +611,8 @@
     <Content Include="Content\toastr.less" />
     <Content Include="wkhtmltopdf-license.txt" />
     <Content Include="Content\site\site.declarationdata.less" />
+    <Content Include="Modules\Common\Dashboard\DashboardIndexbak.cshtml" />
+    <Content Include="ExcelTemplate\Template.xlsx" />
     <None Include="packages.config" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1317,6 +1322,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Allot.DeclarationDataExcelImportService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.StateKind.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Common.BackgroundTaskLogRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1342,6 +1350,7 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Allot\DeclarationData\DeclarationDataExcelImportDialog.ts" />
+    <TypeScriptCompile Include="Modules\Allot\DeclarationData\FlightFormatter.ts" />
     <TypeScriptCompile Include="Modules\Allot\DeclarationData\IsCheckedFormatter.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
@@ -1631,11 +1640,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ClientTypes\Allot.FlightFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ClientTypes\Allot.IsCheckedFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170211_152700_Mailing.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170304_085200_TwoFactorAuth.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20171207_164900_ChangeIsCheckedInDeclarationData.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20171207_152700_AddFlightInDeclarationData.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171206_173600_DeclarationData.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
@@ -1664,6 +1678,7 @@
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataApplicationUnitLookup.cs" />
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataExcelImportEndpoint.cs" />
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataExcelImportForm.cs" />
+    <Compile Include="Modules\Allot\DeclarationData\StateKind.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskManager.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskRow.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskStatus.cs" />

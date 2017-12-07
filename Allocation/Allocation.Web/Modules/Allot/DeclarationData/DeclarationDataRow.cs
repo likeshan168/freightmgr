@@ -64,11 +64,25 @@ namespace Allocation.Allot.Entities
             set { Fields.Description[this] = value; }
         }
 
-        [DisplayName("Is Checked")]
-        public Boolean? IsChecked
+        //[DisplayName("Is Checked")]
+        //public Boolean? IsChecked
+        //{
+        //    get { return Fields.IsChecked[this]; }
+        //    set { Fields.IsChecked[this] = value; }
+        //}
+
+        [DisplayName("IsChecked"), NotNull, DefaultValue(StateKind.NoChecked)]
+        public StateKind? IsChecked
         {
-            get { return Fields.IsChecked[this]; }
-            set { Fields.IsChecked[this] = value; }
+            get { return (StateKind?)Fields.IsChecked[this]; }
+            set { Fields.IsChecked[this] = (Int32?)value; }
+        }
+
+        [DisplayName("Flight"), Size(100), QuickSearch]
+        public String Flight
+        {
+            get { return Fields.Flight[this]; }
+            set { Fields.Flight[this] = value; }
         }
 
         IIdField IIdRow.IdField
@@ -97,7 +111,8 @@ namespace Allocation.Allot.Entities
             public Int32Field Amount;
             public DoubleField Weight;
             public StringField Description;
-            public BooleanField IsChecked;
+            public StringField Flight;
+            public Int32Field IsChecked;
 
             public RowFields()
                 : base()

@@ -1,4 +1,5 @@
 ﻿
+using Allocation.Allot.Entities;
 using Allocation.Modules.Allot.DeclarationData;
 
 namespace Allocation.Allot.Columns
@@ -15,15 +16,16 @@ namespace Allocation.Allot.Columns
     [BasedOnRow(typeof(Entities.DeclarationDataRow))]
     public class DeclarationDataColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight, SortOrder(1)]
+        [EditLink, DisplayName("Db.Shared.RecordId"), SortOrder(1)]
         public Int64 Id { get; set; }
         [QuickFilter, IsCheckedFormatter, Width(100)]
-        public Boolean IsChecked { get; set; }
+        public StateKind IsChecked { get; set; }
         [EditLink]
         [QuickFilter, QuickFilterOption("multiple", true)]
         [LookupEditor(typeof(DeclarationDataApplicationUnitLookup))]
         public String ApplicationUnit { get; set; }
-
+        [FlightFormatter]
+        public String Flight { get; set; }
         [QuickFilter, QuickFilterOption("multiple", true), QuickFilterOption("CascadeFrom", "ApplicationUnit")]
         [LookupEditor(typeof(DeclarationDataMasterAwbLookup))]
         public String MasterAwb { get; set; }

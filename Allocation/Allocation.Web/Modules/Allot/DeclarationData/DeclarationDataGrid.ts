@@ -70,6 +70,15 @@
                 },
                 separator: true
             });
+
+            buttons.push({
+                title: '下载模板',
+                cssClass: 'export-xlsx-button',
+                onClick: () => {
+                    Q.postToService({ service: DeclarationDataService.baseUrl + '/ExcelTemplate', request: null, target: '_blank' });
+                },
+                separator: true
+            });
             return buttons;
         }
         protected getColumns() {
@@ -194,7 +203,7 @@
                 if (response.Entities.length === 1) {
                     //提交更新的操作
                     let item = response.Entities[0];
-                    item.IsChecked = true;
+                    item.IsChecked = 2;
                     DeclarationDataService.Update({
                         EntityId: item.Id,
                         Entity: item
@@ -202,8 +211,25 @@
                         (): void => {
                             Q.notifySuccess("已经到货");
                         });
+                    //Q.postToService({
+                    //    service: DeclarationDataService.baseUrl + '/Update',
+                    //    request: { EntityId: item.Id, Entity: item },
+                    //});
                 } else if (response.Entities.length === 0) {
-                    Q.notifyWarning("溢装到货");
+                    Q.confirm("信息不存在，是否添加，并标记为溢装到货",
+                        () => {
+                            console.log(this.view.params);
+                            let filters = this.view.params.EqualityFilter;
+                            if (filters != undefined) {
+                                this.editItem(<Allot.DeclarationDataRow>{
+                                    ApplicationUnit: filters.ApplicationUnit[0],
+                                    MasterAwb: filters.MasterAwb[0],
+                                    SubAwb: filters.SubAwb,
+                                    Amount: 1,
+                                    IsChecked: 3
+                                });
+                            }
+                        });
                 }
             }
             this.subawbEvent = null;

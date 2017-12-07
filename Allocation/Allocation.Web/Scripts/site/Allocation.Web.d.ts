@@ -393,12 +393,13 @@ declare namespace Allocation.Allot {
     }
     interface DeclarationDataForm {
         ApplicationUnit: Serenity.StringEditor;
+        Flight: Serenity.StringEditor;
         MasterAwb: Serenity.StringEditor;
         SubAwb: Serenity.StringEditor;
         Amount: Serenity.IntegerEditor;
         Weight: Serenity.DecimalEditor;
         Description: Serenity.StringEditor;
-        IsChecked: Serenity.BooleanEditor;
+        IsChecked: Serenity.EnumEditor;
     }
 }
 declare namespace Allocation.Allot {
@@ -410,7 +411,8 @@ declare namespace Allocation.Allot {
         Amount?: number;
         Weight?: number;
         Description?: string;
-        IsChecked?: boolean;
+        Flight?: string;
+        IsChecked?: StateKind;
     }
     namespace DeclarationDataRow {
         const idProperty = "Id";
@@ -426,6 +428,7 @@ declare namespace Allocation.Allot {
             const Amount: string;
             const Weight: string;
             const Description: string;
+            const Flight: string;
             const IsChecked: string;
         }
     }
@@ -952,7 +955,7 @@ declare namespace Allocation.Allot {
         protected getLocalTextPrefix(): string;
         protected getNameProperty(): string;
         protected getService(): string;
-        protected form: DeclarationDataForm;
+        form: DeclarationDataForm;
     }
 }
 declare namespace Allocation.Allot {
@@ -986,7 +989,7 @@ declare namespace Allocation.Allot {
 }
 declare namespace Allocation.Allot {
     class IsCheckedFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): "<span class='allot-checked'/>" | "<span class='allot-nochecked'/>";
+        format(ctx: Slick.FormatterContext): "<span title='已收货' class='allot-checked'/>" | "<span title='未收货' class='allot-nochecked'/>" | "<span title='溢装收货' class='allot-overchecked'/>";
     }
 }
 declare namespace Allocation.LanguageList {
@@ -1351,5 +1354,17 @@ declare namespace Allocation.Membership {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);
+    }
+}
+declare namespace Allocation.Allot {
+    class FlightFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Allocation.Allot {
+    enum StateKind {
+        NoChecked = 1,
+        Checked = 2,
+        OverChecked = 3,
     }
 }

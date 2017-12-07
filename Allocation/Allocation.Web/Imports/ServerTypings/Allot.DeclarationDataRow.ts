@@ -7,7 +7,8 @@
         Amount?: number;
         Weight?: number;
         Description?: string;
-        IsChecked?: boolean;
+        Flight?: string;
+        IsChecked?: StateKind;
     }
 
     export namespace DeclarationDataRow {
@@ -28,6 +29,7 @@
             export declare const Amount: string;
             export declare const Weight: string;
             export declare const Description: string;
+            export declare const Flight: string;
             export declare const IsChecked: string;
         }
 
@@ -39,6 +41,7 @@
             'Amount', 
             'Weight', 
             'Description', 
+            'Flight', 
             'IsChecked'
         ].forEach(x => (<any>Fields)[x] = x);
     }

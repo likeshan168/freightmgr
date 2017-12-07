@@ -54,8 +54,8 @@ namespace Allocation.Allot.Endpoints
                     // every circulation should reset the flag
                     isCreat = false;
                     // check the productno is empty or not
-                    var masterNo = worksheet.Cells[row, 2].GetValue<string>();
-                    var no = worksheet.Cells[row, 3].GetValue<string>();
+                    var masterNo = worksheet.Cells[row, 3].GetValue<string>();
+                    var no = worksheet.Cells[row, 4].GetValue<string>();
 
                     if (masterNo.IsTrimmedEmpty() || no.IsTrimmedEmpty())
                         continue;
@@ -81,11 +81,13 @@ namespace Allocation.Allot.Endpoints
                         isCreat = false;
                     }
                     yundan.ApplicationUnit = worksheet.Cells[row, 1].GetValue<string>();
-                    int.TryParse(worksheet.Cells[row, 4].GetValue<string>(), out int amount);
+                    yundan.Flight = worksheet.Cells[row, 2].GetValue<string>();
+                    int.TryParse(worksheet.Cells[row, 5].GetValue<string>(), out int amount);
                     yundan.Amount = amount;
-                    double.TryParse(worksheet.Cells[row, 5].GetValue<string>(), out double weight);
+                    double.TryParse(worksheet.Cells[row, 6].GetValue<string>(), out double weight);
                     yundan.Weight = weight;
-                    yundan.Description = worksheet.Cells[row, 6].GetValue<string>();
+                    yundan.Description = worksheet.Cells[row, 7].GetValue<string>();
+                    yundan.IsChecked = Entities.StateKind.NoChecked;
                     if (isCreat)
                     {
                         new DeclarationDataRepository().Create(uow, new SaveRequest<MyRow>

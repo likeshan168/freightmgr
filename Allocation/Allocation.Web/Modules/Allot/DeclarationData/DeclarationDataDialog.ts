@@ -11,7 +11,7 @@ namespace Allocation.Allot {
         protected getNameProperty() { return DeclarationDataRow.nameProperty; }
         protected getService() { return DeclarationDataService.baseUrl; }
 
-        protected form = new DeclarationDataForm(this.idPrefix);
+        public form = new DeclarationDataForm(this.idPrefix);
 
     }
 }

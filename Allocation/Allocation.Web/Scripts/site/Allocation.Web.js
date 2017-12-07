@@ -446,7 +446,7 @@ var Allocation;
         }(Serenity.PrefixedContext));
         DeclarationDataForm.formKey = 'Allot.DeclarationData';
         Allot.DeclarationDataForm = DeclarationDataForm;
-        [['ApplicationUnit', function () { return Serenity.StringEditor; }], ['MasterAwb', function () { return Serenity.StringEditor; }], ['SubAwb', function () { return Serenity.StringEditor; }], ['Amount', function () { return Serenity.IntegerEditor; }], ['Weight', function () { return Serenity.DecimalEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['IsChecked', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(DeclarationDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['ApplicationUnit', function () { return Serenity.StringEditor; }], ['Flight', function () { return Serenity.StringEditor; }], ['MasterAwb', function () { return Serenity.StringEditor; }], ['SubAwb', function () { return Serenity.StringEditor; }], ['Amount', function () { return Serenity.IntegerEditor; }], ['Weight', function () { return Serenity.DecimalEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['IsChecked', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(DeclarationDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
@@ -474,6 +474,7 @@ var Allocation;
                 'Amount',
                 'Weight',
                 'Description',
+                'Flight',
                 'IsChecked'
             ].forEach(function (x) { return Fields[x] = x; });
         })(DeclarationDataRow = Allot.DeclarationDataRow || (Allot.DeclarationDataRow = {}));
@@ -1861,6 +1862,14 @@ var Allocation;
                     },
                     separator: true
                 });
+                buttons.push({
+                    title: '下载模板',
+                    cssClass: 'export-xlsx-button',
+                    onClick: function () {
+                        Q.postToService({ service: Allot.DeclarationDataService.baseUrl + '/ExcelTemplate', request: null, target: '_blank' });
+                    },
+                    separator: true
+                });
                 return buttons;
             };
             DeclarationDataGrid.prototype.getColumns = function () {
@@ -1965,20 +1974,37 @@ var Allocation;
                 return filters;
             };
             DeclarationDataGrid.prototype.onViewProcessData = function (response) {
+                var _this = this;
                 if (this.subawbEvent) {
                     if (response.Entities.length === 1) {
                         //提交更新的操作
                         var item = response.Entities[0];
-                        item.IsChecked = true;
+                        item.IsChecked = 2;
                         Allot.DeclarationDataService.Update({
                             EntityId: item.Id,
                             Entity: item
                         }, function () {
                             Q.notifySuccess("已经到货");
                         });
+                        //Q.postToService({
+                        //    service: DeclarationDataService.baseUrl + '/Update',
+                        //    request: { EntityId: item.Id, Entity: item },
+                        //});
                     }
                     else if (response.Entities.length === 0) {
-                        Q.notifyWarning("溢装到货");
+                        Q.confirm("信息不存在，是否添加，并标记为溢装到货", function () {
+                            console.log(_this.view.params);
+                            var filters = _this.view.params.EqualityFilter;
+                            if (filters != undefined) {
+                                _this.editItem({
+                                    ApplicationUnit: filters.ApplicationUnit[0],
+                                    MasterAwb: filters.MasterAwb[0],
+                                    SubAwb: filters.SubAwb,
+                                    Amount: 1,
+                                    IsChecked: 3
+                                });
+                            }
+                        });
                     }
                 }
                 this.subawbEvent = null;
@@ -2003,11 +2029,14 @@ var Allocation;
                 //return "<span class='shipper-symbol shipper-" +
                 //    Q.replaceAll((ctx.value || '').toString(), ' ', '') +
                 //    "'>" + Q.htmlEncode(ctx.value) + '</span>';
-                if (ctx.value) {
-                    return "<span class='allot-checked'/>";
+                if (ctx.value === 2) {
+                    return "<span title='已收货' class='allot-checked'/>";
                 }
-                else {
-                    return "<span class='allot-nochecked'/>";
+                else if (ctx.value === 1) {
+                    return "<span title='未收货' class='allot-nochecked'/>";
+                }
+                else if (ctx.value === 3) {
+                    return "<span title='溢装收货' class='allot-overchecked'/>";
                 }
             };
             return IsCheckedFormatter;
@@ -3753,5 +3782,36 @@ var Allocation;
         ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
+})(Allocation || (Allocation = {}));
+var Allocation;
+(function (Allocation) {
+    var Allot;
+    (function (Allot) {
+        var FlightFormatter = (function () {
+            function FlightFormatter() {
+            }
+            FlightFormatter.prototype.format = function (ctx) {
+                return "<span class='allot-flight'>" + Q.htmlEncode(ctx.value) + "</span>";
+            };
+            return FlightFormatter;
+        }());
+        FlightFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], FlightFormatter);
+        Allot.FlightFormatter = FlightFormatter;
+    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
+})(Allocation || (Allocation = {}));
+var Allocation;
+(function (Allocation) {
+    var Allot;
+    (function (Allot) {
+        var StateKind;
+        (function (StateKind) {
+            StateKind[StateKind["NoChecked"] = 1] = "NoChecked";
+            StateKind[StateKind["Checked"] = 2] = "Checked";
+            StateKind[StateKind["OverChecked"] = 3] = "OverChecked";
+        })(StateKind = Allot.StateKind || (Allot.StateKind = {}));
+        Serenity.Decorators.registerEnum(StateKind, 'Allocation.StateKind');
+    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
 //# sourceMappingURL=Allocation.Web.js.map
