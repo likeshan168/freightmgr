@@ -1,5 +1,5 @@
-﻿
-namespace Allocation.Allot {
+﻿namespace Allocation.Allot {
+    import ListResponse = Serenity.ListResponse;
 
     @Serenity.Decorators.registerClass()
     export class DeclarationDataGrid extends Serenity.EntityGrid<DeclarationDataRow, any> {
@@ -9,9 +9,11 @@ namespace Allocation.Allot {
         protected getLocalTextPrefix() { return DeclarationDataRow.localTextPrefix; }
         protected getService() { return DeclarationDataService.baseUrl; }
 
+        private subawbEvent: JQueryEventObject;
         public rowSelection: Serenity.GridRowSelectionMixin;
         constructor(container: JQuery) {
             super(container);
+            $("input.is-subawb").on("change", (e) => this.subawbEvent = e);
         }
 
         protected createToolbarExtensions() {
@@ -65,7 +67,8 @@ namespace Allocation.Allot {
                             });
                         });
                     }
-                }
+                },
+                separator: true
             });
             return buttons;
         }
@@ -128,5 +131,93 @@ namespace Allocation.Allot {
             grid.setSelectionModel(new Slick.RowSelectionModel());
             return grid;
         }
+
+        //protected quickFilterChange(e: JQueryEventObject): void {
+        //    super.quickFilterChange(e);
+        //    console.log(e);
+        //    if (e.target.id === "Allocation_Allot_DeclarationDataGrid0_QuickFilter_SubAwb") {
+        //        let rows = this.view.getItems();
+        //        console.log(rows);
+        //        if (rows.length === 1) {
+        //            //提交更新的操作
+        //            let item = rows[0];
+        //            item.IsChecked = true;
+        //            DeclarationDataService.Update({
+        //                EntityId: rows[0].Id,
+        //                Entity: item
+        //            },
+        //                (): void => {
+        //                    Q.notifySuccess("已经到货");
+        //                });
+        //        } else if (rows.length === 0) {
+        //            Q.notifySuccess("溢装到货");
+        //        }
+        //    }
+        //}
+
+        //private onSubAwbChange(e: JQueryEventObject): void {
+        //    let rows = this.getItems();
+        //    console.log(rows);
+        //    if (rows.length === 1) {
+        //        //提交更新的操作
+        //        let item = rows[0];
+        //        item.IsChecked = true;
+        //        DeclarationDataService.Update({
+        //            EntityId: rows[0].Id,
+        //            Entity: item
+        //        },
+        //            (): void => {
+        //                Q.notifySuccess("已经到货");
+        //            });
+        //    } else if (rows.length === 0) {
+        //        Q.notifyWarning("溢装到货");
+        //    }
+        //}
+
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[] {
+            // get quick filter list from base class, e.g. columns
+            let filters = super.getQuickFilters();
+            let fld = Allot.DeclarationDataRow.Fields;
+            let filter = Q.first(filters, x => x.field === fld.SubAwb);
+            filter.title = "扫分单号点货";
+            filter.element = e => {
+                e.addClass("is-subawb");
+            }
+
+            return filters;
+        }
+
+
+        protected onViewProcessData(response: Serenity.ListResponse<Allot.DeclarationDataRow>): ListResponse<DeclarationDataRow> {
+
+            if (this.subawbEvent) {
+                if (response.Entities.length === 1) {
+                    //提交更新的操作
+                    let item = response.Entities[0];
+                    item.IsChecked = true;
+                    DeclarationDataService.Update({
+                        EntityId: item.Id,
+                        Entity: item
+                    },
+                        (): void => {
+                            Q.notifySuccess("已经到货");
+                        });
+                } else if (response.Entities.length === 0) {
+                    Q.notifyWarning("溢装到货");
+                }
+            }
+            this.subawbEvent = null;
+            return response;
+        }
+
+        //protected getItemCssClass(item: Allot.DeclarationDataRow, index: number): string {
+        //    let klass: string = "";
+        //    if (item.IsChecked) {
+        //        klass += " is-checked";
+        //    } else {
+        //        klass += " is-nochecked";
+        //    }
+        //    return Q.trimToNull(klass);
+        //}
     }
 }

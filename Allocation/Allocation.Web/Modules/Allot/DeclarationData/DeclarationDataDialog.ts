@@ -3,6 +3,7 @@ namespace Allocation.Allot {
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.responsive()
+    @Serenity.Decorators.panel()
     export class DeclarationDataDialog extends Serenity.EntityDialog<DeclarationDataRow, any> {
         protected getFormKey() { return DeclarationDataForm.formKey; }
         protected getIdProperty() { return DeclarationDataRow.idProperty; }

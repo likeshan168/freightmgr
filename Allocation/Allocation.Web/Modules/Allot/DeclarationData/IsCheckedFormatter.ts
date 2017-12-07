@@ -7,9 +7,9 @@
             //    Q.replaceAll((ctx.value || '').toString(), ' ', '') +
             //    "'>" + Q.htmlEncode(ctx.value) + '</span>';
             if (ctx.value) {
-                return "<span class='iconfont icon-checked'/>";
+                return "<span class='allot-checked'/>";
             } else {
-                return "<span class='iconfont icon-nochecked'/>";
+                return "<span class='allot-nochecked'/>";
             }
         }
     }

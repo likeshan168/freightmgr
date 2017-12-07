@@ -513,6 +513,10 @@
     <Content Include="Content\serenity\images\xml.png" />
     <Content Include="Content\serenity\images\zones-stack.png" />
     <Content Include="Content\serenity\images\zoom.png" />
+    <Content Include="Content\serenity\myimages\nochecked.png" />
+    <Content Include="Content\serenity\myimages\checked.png" />
+    <Content Include="Content\serenity\myimages\checked16.png" />
+    <Content Include="Content\serenity\myimages\nochecked16.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\site\images\accordion-arrows.png" />
@@ -603,6 +607,7 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="wkhtmltopdf-license.txt" />
+    <Content Include="Content\site\site.declarationdata.less" />
     <None Include="packages.config" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />

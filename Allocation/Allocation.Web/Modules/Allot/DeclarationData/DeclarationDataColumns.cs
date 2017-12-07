@@ -17,6 +17,8 @@ namespace Allocation.Allot.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight, SortOrder(1)]
         public Int64 Id { get; set; }
+        [QuickFilter, IsCheckedFormatter, Width(100)]
+        public Boolean IsChecked { get; set; }
         [EditLink]
         [QuickFilter, QuickFilterOption("multiple", true)]
         [LookupEditor(typeof(DeclarationDataApplicationUnitLookup))]
@@ -30,7 +32,5 @@ namespace Allocation.Allot.Columns
         public Int32 Amount { get; set; }
         public Double Weight { get; set; }
         public String Description { get; set; }
-        [QuickFilter, IsCheckedFormatter]
-        public Boolean IsChecked { get; set; }
     }
 }

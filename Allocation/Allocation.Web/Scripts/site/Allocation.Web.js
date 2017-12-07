@@ -1733,7 +1733,8 @@ var Allocation;
         }(Serenity.EntityDialog));
         DeclarationDataDialog = __decorate([
             Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
+            Serenity.Decorators.responsive(),
+            Serenity.Decorators.panel()
         ], DeclarationDataDialog);
         Allot.DeclarationDataDialog = DeclarationDataDialog;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
@@ -1798,7 +1799,9 @@ var Allocation;
         var DeclarationDataGrid = (function (_super) {
             __extends(DeclarationDataGrid, _super);
             function DeclarationDataGrid(container) {
-                return _super.call(this, container) || this;
+                var _this = _super.call(this, container) || this;
+                $("input.is-subawb").on("change", function (e) { return _this.subawbEvent = e; });
+                return _this;
             }
             DeclarationDataGrid.prototype.getColumnsKey = function () { return 'Allot.DeclarationData'; };
             DeclarationDataGrid.prototype.getDialogType = function () { return Allot.DeclarationDataDialog; };
@@ -1855,7 +1858,8 @@ var Allocation;
                                 });
                             });
                         }
-                    }
+                    },
+                    separator: true
                 });
                 return buttons;
             };
@@ -1909,12 +1913,109 @@ var Allocation;
                 grid.setSelectionModel(new Slick.RowSelectionModel());
                 return grid;
             };
+            //protected quickFilterChange(e: JQueryEventObject): void {
+            //    super.quickFilterChange(e);
+            //    console.log(e);
+            //    if (e.target.id === "Allocation_Allot_DeclarationDataGrid0_QuickFilter_SubAwb") {
+            //        let rows = this.view.getItems();
+            //        console.log(rows);
+            //        if (rows.length === 1) {
+            //            //提交更新的操作
+            //            let item = rows[0];
+            //            item.IsChecked = true;
+            //            DeclarationDataService.Update({
+            //                EntityId: rows[0].Id,
+            //                Entity: item
+            //            },
+            //                (): void => {
+            //                    Q.notifySuccess("已经到货");
+            //                });
+            //        } else if (rows.length === 0) {
+            //            Q.notifySuccess("溢装到货");
+            //        }
+            //    }
+            //}
+            //private onSubAwbChange(e: JQueryEventObject): void {
+            //    let rows = this.getItems();
+            //    console.log(rows);
+            //    if (rows.length === 1) {
+            //        //提交更新的操作
+            //        let item = rows[0];
+            //        item.IsChecked = true;
+            //        DeclarationDataService.Update({
+            //            EntityId: rows[0].Id,
+            //            Entity: item
+            //        },
+            //            (): void => {
+            //                Q.notifySuccess("已经到货");
+            //            });
+            //    } else if (rows.length === 0) {
+            //        Q.notifyWarning("溢装到货");
+            //    }
+            //}
+            DeclarationDataGrid.prototype.getQuickFilters = function () {
+                // get quick filter list from base class, e.g. columns
+                var filters = _super.prototype.getQuickFilters.call(this);
+                var fld = Allot.DeclarationDataRow.Fields;
+                var filter = Q.first(filters, function (x) { return x.field === fld.SubAwb; });
+                filter.title = "扫分单号点货";
+                filter.element = function (e) {
+                    e.addClass("is-subawb");
+                };
+                return filters;
+            };
+            DeclarationDataGrid.prototype.onViewProcessData = function (response) {
+                if (this.subawbEvent) {
+                    if (response.Entities.length === 1) {
+                        //提交更新的操作
+                        var item = response.Entities[0];
+                        item.IsChecked = true;
+                        Allot.DeclarationDataService.Update({
+                            EntityId: item.Id,
+                            Entity: item
+                        }, function () {
+                            Q.notifySuccess("已经到货");
+                        });
+                    }
+                    else if (response.Entities.length === 0) {
+                        Q.notifyWarning("溢装到货");
+                    }
+                }
+                this.subawbEvent = null;
+                return response;
+            };
             return DeclarationDataGrid;
         }(Serenity.EntityGrid));
         DeclarationDataGrid = __decorate([
             Serenity.Decorators.registerClass()
         ], DeclarationDataGrid);
         Allot.DeclarationDataGrid = DeclarationDataGrid;
+    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
+})(Allocation || (Allocation = {}));
+var Allocation;
+(function (Allocation) {
+    var Allot;
+    (function (Allot) {
+        var IsCheckedFormatter = (function () {
+            function IsCheckedFormatter() {
+            }
+            IsCheckedFormatter.prototype.format = function (ctx) {
+                //return "<span class='shipper-symbol shipper-" +
+                //    Q.replaceAll((ctx.value || '').toString(), ' ', '') +
+                //    "'>" + Q.htmlEncode(ctx.value) + '</span>';
+                if (ctx.value) {
+                    return "<span class='allot-checked'/>";
+                }
+                else {
+                    return "<span class='allot-nochecked'/>";
+                }
+            };
+            return IsCheckedFormatter;
+        }());
+        IsCheckedFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], IsCheckedFormatter);
+        Allot.IsCheckedFormatter = IsCheckedFormatter;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
@@ -3652,31 +3753,5 @@ var Allocation;
         ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
-})(Allocation || (Allocation = {}));
-var Allocation;
-(function (Allocation) {
-    var Allot;
-    (function (Allot) {
-        var IsCheckedFormatter = (function () {
-            function IsCheckedFormatter() {
-            }
-            IsCheckedFormatter.prototype.format = function (ctx) {
-                //return "<span class='shipper-symbol shipper-" +
-                //    Q.replaceAll((ctx.value || '').toString(), ' ', '') +
-                //    "'>" + Q.htmlEncode(ctx.value) + '</span>';
-                if (ctx.value) {
-                    return "<span class='iconfont icon-checked'/>";
-                }
-                else {
-                    return "<span class='iconfont icon-nochecked'/>";
-                }
-            };
-            return IsCheckedFormatter;
-        }());
-        IsCheckedFormatter = __decorate([
-            Serenity.Decorators.registerFormatter()
-        ], IsCheckedFormatter);
-        Allot.IsCheckedFormatter = IsCheckedFormatter;
-    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
 //# sourceMappingURL=Allocation.Web.js.map

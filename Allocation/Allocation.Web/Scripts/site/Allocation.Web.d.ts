@@ -964,12 +964,14 @@ declare namespace Allocation.Allot {
     }
 }
 declare namespace Allocation.Allot {
+    import ListResponse = Serenity.ListResponse;
     class DeclarationDataGrid extends Serenity.EntityGrid<DeclarationDataRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof DeclarationDataDialog;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;
+        private subawbEvent;
         rowSelection: Serenity.GridRowSelectionMixin;
         constructor(container: JQuery);
         protected createToolbarExtensions(): void;
@@ -978,6 +980,13 @@ declare namespace Allocation.Allot {
         protected onClick(e: JQueryEventObject, row: number, cell: number): void;
         protected getSlickOptions(): Slick.GridOptions;
         protected createSlickGrid(): Slick.Grid;
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+        protected onViewProcessData(response: Serenity.ListResponse<Allot.DeclarationDataRow>): ListResponse<DeclarationDataRow>;
+    }
+}
+declare namespace Allocation.Allot {
+    class IsCheckedFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): "<span class='allot-checked'/>" | "<span class='allot-nochecked'/>";
     }
 }
 declare namespace Allocation.LanguageList {
@@ -1342,10 +1351,5 @@ declare namespace Allocation.Membership {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);
-    }
-}
-declare namespace Allocation.Allot {
-    class IsCheckedFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): "<span class='iconfont icon-checked'/>" | "<span class='iconfont icon-nochecked'/>";
     }
 }
