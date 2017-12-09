@@ -6,12 +6,13 @@ namespace Allocation.Administration.Entities
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
+    using Allocation.Modules.Administration.Tenants;
 
     [ConnectionKey("Default"), DisplayName("Roles"), InstanceName("Role"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript("Administration.Role")]
-    public sealed class RoleRow : Row, IIdRow, INameRow
+    public sealed class RoleRow : Row, IIdRow, INameRow, IMul​​tiTenantRow
     {
         [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]
         public Int32? RoleId
@@ -27,6 +28,13 @@ namespace Allocation.Administration.Entities
             set { Fields.RoleName[this] = value; }
         }
 
+        [Insertable(false), Updatable(false)]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
 
         IIdField IIdRow.IdField
         {
@@ -37,6 +45,7 @@ namespace Allocation.Administration.Entities
         {
             get { return Fields.RoleName; }
         }
+        public Int32Field TenantIdField => Fields.TenantId;
 
         public static readonly RowFields Fields = new RowFields().Init();
 
@@ -49,7 +58,7 @@ namespace Allocation.Administration.Entities
         {
             public Int32Field RoleId;
             public StringField RoleName;
-
+            public Int32Field TenantId;
             public RowFields()
                 : base("Roles")
             {

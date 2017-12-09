@@ -2,15 +2,31 @@
     import ListResponse = Serenity.ListResponse;
 
     @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.filterable()
     export class DeclarationDataGrid extends Serenity.EntityGrid<DeclarationDataRow, any> {
-        protected getColumnsKey() { return 'Allot.DeclarationData'; }
-        protected getDialogType() { return DeclarationDataDialog; }
-        protected getIdProperty() { return DeclarationDataRow.idProperty; }
-        protected getLocalTextPrefix() { return DeclarationDataRow.localTextPrefix; }
-        protected getService() { return DeclarationDataService.baseUrl; }
+        protected getColumnsKey() {
+            return 'Allot.DeclarationData';
+        }
+
+        protected getDialogType() {
+            return DeclarationDataDialog;
+        }
+
+        protected getIdProperty() {
+            return DeclarationDataRow.idProperty;
+        }
+
+        protected getLocalTextPrefix() {
+            return DeclarationDataRow.localTextPrefix;
+        }
+
+        protected getService() {
+            return DeclarationDataService.baseUrl;
+        }
 
         private subawbEvent: JQueryEventObject;
         public rowSelection: Serenity.GridRowSelectionMixin;
+
         constructor(container: JQuery) {
             super(container);
             $("input.is-subawb").on("change", (e) => this.subawbEvent = e);
@@ -26,16 +42,6 @@
             // call base method to get list of buttons
             let buttons = super.getButtons();
             // add our export button
-            buttons.push(Common.ExcelExportHelper.createToolButton({
-                title: '导出Excel',
-                hint: '导出Excel',
-                grid: this,
-                service: DeclarationDataService.baseUrl + '/ListExcel',
-                onViewSubmit: () => this.onViewSubmit(),
-                separator: true
-            }));
-            // add our import button
-
             buttons.push({
                 title: '导入运单信息',
                 cssClass: 'export-xlsx-button',
@@ -50,6 +56,16 @@
                 },
                 separator: true
             });
+
+            buttons.push(Common.ExcelExportHelper.createToolButton({
+                title: '导出Excel',
+                hint: '导出Excel',
+                grid: this,
+                service: DeclarationDataService.baseUrl + '/ListExcel',
+                onViewSubmit: () => this.onViewSubmit(),
+                separator: true
+            }));
+
             buttons.push({
                 title: '删除选中项',
                 cssClass: 'delete-button',
@@ -75,12 +91,50 @@
                 title: '下载模板',
                 cssClass: 'export-xlsx-button',
                 onClick: () => {
-                    Q.postToService({ service: DeclarationDataService.baseUrl + '/ExcelTemplate', request: null, target: '_blank' });
+                    Q.postToService({
+                        service: DeclarationDataService.baseUrl + '/ExcelTemplate',
+                        request: null,
+                        target: '_blank'
+                    });
                 },
                 separator: true
             });
+            // if (!Authorization.hasPermission("Administration:Tenants")) {
+            buttons.push({
+                title: '理货正常报告',
+                cssClass: 'allot-normal',
+                onClick: () => {
+                    let eq = this.view.params.EqualityFilter;
+                    Common.ReportHelper.execute({
+                        reportKey: 'Allot.NormalReport',
+                        params: {
+                            MasterAwbs: eq.MasterAwb,
+                            SubAwb: eq.SubAwb
+                        }
+                    });
+                },
+                separator: true
+            });
+            buttons.push({
+                title: '理货异常报告',
+                cssClass: 'allot-unusual',
+                onClick: () => {
+                    let eq = this.view.params.EqualityFilter;
+                    Common.ReportHelper.execute({
+                       reportKey: 'Allot.AbnormalReport',
+                        params: {
+                            MasterAwbs: eq.MasterAwb,
+                            SubAwb: eq.SubAwb
+                        }
+                    });
+                },
+                separator: true
+            });
+            // }
+            
             return buttons;
         }
+
         protected getColumns() {
             let columns = super.getColumns();
 
@@ -200,14 +254,15 @@
         protected onViewProcessData(response: Serenity.ListResponse<Allot.DeclarationDataRow>): ListResponse<DeclarationDataRow> {
 
             if (this.subawbEvent) {
+                $(this.subawbEvent.target).select();
                 if (response.Entities.length === 1) {
                     //提交更新的操作
                     let item = response.Entities[0];
                     item.IsChecked = 2;
                     DeclarationDataService.Update({
-                        EntityId: item.Id,
-                        Entity: item
-                    },
+                            EntityId: item.Id,
+                            Entity: item
+                        },
                         (): void => {
                             Q.notifySuccess("已经到货");
                         });
@@ -222,7 +277,7 @@
                             let filters = this.view.params.EqualityFilter;
                             if (filters != undefined) {
                                 this.editItem(<Allot.DeclarationDataRow>{
-                                    ApplicationUnit: filters.ApplicationUnit[0],
+                                    //ApplicationUnit: filters.ApplicationUnit[0],
                                     MasterAwb: filters.MasterAwb[0],
                                     SubAwb: filters.SubAwb,
                                     Amount: 1,

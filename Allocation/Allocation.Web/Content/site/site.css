@@ -7516,3 +7516,12 @@ i.premium-sample {
   padding: 2px 0px 2px 20px;
   background: url(../serenity/myimages/flight.png) no-repeat center left;
 }
+.allot-normal span.button-inner {
+  background: url(../serenity/myimages/checked16.png) no-repeat center left;
+}
+.allot-unusual span.button-inner {
+  background: url(../serenity/myimages/nochecked16.png) no-repeat center left;
+}
+.allot-tenants {
+  background: url('../serenity/myimages/tenants.png') no-repeat center left;
+}

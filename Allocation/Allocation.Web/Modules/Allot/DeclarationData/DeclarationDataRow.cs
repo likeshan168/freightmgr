@@ -1,4 +1,6 @@
 ﻿
+using Allocation.Modules.Administration.Tenants;
+
 namespace Allocation.Allot.Entities
 {
     using Serenity;
@@ -11,9 +13,9 @@ namespace Allocation.Allot.Entities
 
     [ConnectionKey("Default"), TableName("[allot].[DeclarationData]")]
     [DisplayName("Declaration Data"), InstanceName("Declaration Data"), TwoLevelCached]
-    [ReadPermission(PermissionKeys.DeclarationData.View)]
-    [ModifyPermission(PermissionKeys.DeclarationData.Modify)]
-    public sealed class DeclarationDataRow : Row, IIdRow, INameRow
+    [ReadPermission(AllotPermissionKeys.DeclarationData.View)]
+    [ModifyPermission(AllotPermissionKeys.DeclarationData.Modify)]
+    public sealed class DeclarationDataRow : Row, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity]
         public Int64? Id
@@ -78,12 +80,32 @@ namespace Allocation.Allot.Entities
             set { Fields.IsChecked[this] = (Int32?)value; }
         }
 
-        [DisplayName("Flight"), Size(100), QuickSearch]
+        [DisplayName("Flight"), Size(100), QuickSearch, NotNull]
         public String Flight
         {
             get { return Fields.Flight[this]; }
             set { Fields.Flight[this] = value; }
         }
+
+        [Insertable(false), Updatable(false), ForeignKey("[dbo].[Tenants]", "TenantId"), LeftJoin("jTenants"), TextualField("TenantName")]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
+        [DisplayName("TenantName"), QuickSearch, Expression("jTenants.TenantName")]
+        public String TenantName
+        {
+            get { return Fields.TenantName[this]; }
+            set { Fields.TenantName[this] = value; }
+        }
+
+        public Int32Field TenantIdField
+        {
+            get { return Fields.TenantId; }
+        }
+
 
         IIdField IIdRow.IdField
         {
@@ -113,6 +135,8 @@ namespace Allocation.Allot.Entities
             public StringField Description;
             public StringField Flight;
             public Int32Field IsChecked;
+            public readonly Int32Field TenantId;
+            public StringField TenantName;
 
             public RowFields()
                 : base()

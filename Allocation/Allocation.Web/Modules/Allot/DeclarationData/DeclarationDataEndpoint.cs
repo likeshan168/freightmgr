@@ -31,7 +31,7 @@ namespace Allocation.Allot.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
@@ -75,9 +75,10 @@ namespace Allocation.Allot.Endpoints
         public DeleteResponse BatchDelete(IUnitOfWork uow, BatchDeleteRequest request)
         {
             StringBuilder sb = new StringBuilder();
+            var user = (UserDefinition)Authorization.UserDefinition;
             foreach (var id in request.EntityIds)
             {
-                sb.Append($"delete from [allot].[DeclarationData] where Id={id};");
+                sb.Append($"delete from [allot].[DeclarationData] where Id={id} and TenantId={user.TenantId};");
             }
             if (sb.Length > 0)
             {

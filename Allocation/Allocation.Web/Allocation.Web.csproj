@@ -519,6 +519,7 @@
     <Content Include="Content\serenity\myimages\checked16.png" />
     <Content Include="Content\serenity\myimages\nochecked16.png" />
     <Content Include="Content\serenity\myimages\overchecked.png" />
+    <Content Include="Content\serenity\myimages\tenants.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\site\images\accordion-arrows.png" />
@@ -576,6 +577,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
+    <EmbeddedResource Include="Migrations\DefaultDB\scripts\NormalResultsView.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\scripts\AllResultsView.sql" />
+    <EmbeddedResource Include="Migrations\DefaultDB\scripts\AbnormalResultsView.sql" />
+    <Content Include="Modules\Allot\DeclarationData\NormalReport.cshtml" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
     <Content Include="Imports\Web.config" />
     <Content Include="Migrations\Web.config" />
@@ -613,6 +618,7 @@
     <Content Include="Content\site\site.declarationdata.less" />
     <Content Include="Modules\Common\Dashboard\DashboardIndexbak.cshtml" />
     <Content Include="ExcelTemplate\Template.xlsx" />
+    <Content Include="Modules\Allot\DeclarationData\AbnormalReport.cshtml" />
     <None Include="packages.config" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1623,6 +1629,19 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <Content Include="wwwroot\Content\site\site.allot.less" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantsRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantsService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Administration\Tenants\TenantsIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Administration\Tenants\TenantsDialog.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Tenants\TenantsGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantsForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="wwwroot\Content\site\site.administration.less" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1648,6 +1667,9 @@
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170211_152700_Mailing.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170304_085200_TwoFactorAuth.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_145000_MultiTenant.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_144900_MultiTenant.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_131400_CreateView.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171207_164900_ChangeIsCheckedInDeclarationData.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171207_152700_AddFlightInDeclarationData.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171206_173600_DeclarationData.cs" />
@@ -1657,6 +1679,9 @@
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListResponse.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListRequest.cs" />
     <Compile Include="Modules\Administration\AdministrationPermissionKeys.cs" />
+    <Compile Include="Modules\Administration\Tenants\IMul​​tiTenantRow.cs" />
+    <Compile Include="Modules\Administration\Tenants\MultiTenantBehavior.cs" />
+    <Compile Include="Modules\Administration\Tenants\MultiTenantRowLookupScript.cs" />
     <Compile Include="Modules\Administration\UserPermission\ImplicitPermissionAttribute.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
@@ -1678,6 +1703,8 @@
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataApplicationUnitLookup.cs" />
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataExcelImportEndpoint.cs" />
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataExcelImportForm.cs" />
+    <Compile Include="Modules\Allot\DeclarationData\AbnormalReport.cs" />
+    <Compile Include="Modules\Allot\DeclarationData\NormalReport.cs" />
     <Compile Include="Modules\Allot\DeclarationData\StateKind.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskManager.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskRow.cs" />
@@ -1801,6 +1828,12 @@
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataColumns.cs" />
     <Compile Include="Modules\Allot\DeclarationData\DeclarationDataForm.cs" />
     <Compile Include="Modules\Allot\AllotNavigation.cs" />
+    <Compile Include="Modules\Administration\Tenants\TenantsRow.cs" />
+    <Compile Include="Modules\Administration\Tenants\TenantsRepository.cs" />
+    <Compile Include="Modules\Administration\Tenants\TenantsEndpoint.cs" />
+    <Compile Include="Modules\Administration\Tenants\TenantsPage.cs" />
+    <Compile Include="Modules\Administration\Tenants\TenantsColumns.cs" />
+    <Compile Include="Modules\Administration\Tenants\TenantsForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

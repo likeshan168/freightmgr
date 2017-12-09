@@ -6,7 +6,7 @@ namespace Allocation.Allot
 
     [NestedPermissionKeys]
     [DisplayName("Allot")]
-    public class PermissionKeys
+    public class AllotPermissionKeys
     {
         [DisplayName("DeclarationData")]
         public class DeclarationData

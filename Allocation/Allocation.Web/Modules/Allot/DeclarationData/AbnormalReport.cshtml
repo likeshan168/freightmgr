@@ -1,0 +1,168 @@
+﻿@using System.Collections
+@using Allocation.Allot.Entities
+@model Allocation.Allot.AbnormalReportData
+
+@if ((bool?) ViewData["Printing"] == true)
+{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+
+
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+            <h2 class="page-header">
+                理货异常报告
+            </h2>
+        </div>
+    </div>
+    @if (Model.ReportData == null || !Model.ReportData.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    申报单位
+                </th>
+                <th>
+                    航班号
+                </th>
+                <th>
+                    主运单号
+                </th>
+                <th>
+                    件数
+                </th>
+                <th>
+                    实际到货件数
+                </th>
+                <th>
+                    状态
+                </th>
+            </tr>
+            <tr>
+                <td colspan="6" class="text-center">
+                    没有异常的报告数据
+                </td>
+                
+            </tr>
+        </table>
+    }
+    else
+    {
+        foreach (var data in  Model.ReportData)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        申报单位
+                    </th>
+                    <th>
+                        航班号
+                    </th>
+                    <th>
+                        主运单号
+                    </th>
+                    <th>
+                        件数
+                    </th>
+                    <th>
+                        实际到货件数
+                    </th>
+                    <th>
+                        状态
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @data.ApplicationUnit
+                    </td>
+                    <td>
+                        @data.Flight
+                    </td>
+                    <td>
+                        @data.MasterAwb
+                    </td>
+                    <td>
+                        @data.Amount
+                    </td>
+                    <td>
+                        @data.RealAmount
+                    </td>
+                    <td>
+                        异常
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 text-center">
+                    <h2 class="page-header">
+                        异常情况
+                    </h2>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>短装</th>
+                    <th>件数</th>
+                    <th>溢装</th>
+                    <th>件数</th>
+                    <th>备注</th>
+                </tr>
+                @{
+                    var noChecked = data.Details.Where(p => p.IsChecked == StateKind.NoChecked).ToList();
+                    var overChecked = data.Details.Where(p => p.IsChecked == StateKind.OverChecked).ToList();
+
+                    if (noChecked.Count > overChecked.Count)
+                    {
+                        for (var i = 0; i < noChecked.Count; i++)
+                        {
+                            if (i < overChecked.Count)
+                            {
+                                <tr>
+                                    <td>@noChecked[i].SubAwb</td>
+                                    <td>@noChecked[i].Amount</td>
+                                    <td>@overChecked[i].SubAwb</td>
+                                    <td>@overChecked[i].Amount</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@noChecked[i].SubAwb</td>
+                                    <td>@noChecked[i].Amount</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (var i = 0; i < overChecked.Count; i++)
+                        {
+                            if (i < noChecked.Count)
+                            {
+                                <tr>
+                                    <td>@noChecked[i].SubAwb</td>
+                                    <td>@noChecked[i].Amount</td>
+                                    <td>@overChecked[i].SubAwb</td>
+                                    <td>@overChecked[i].Amount</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>@overChecked[i].SubAwb</td>
+                                    <td>@overChecked[i].Amount</td>
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            </table>
+        }
+    }
+
+</section>

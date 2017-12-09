@@ -28,6 +28,12 @@ namespace Allocation.Administration.Repositories
             var newList = new HashSet<string>(request.Permissions.ToList(), 
                 StringComparer.OrdinalIgnoreCase);
 
+            var allowedKeys = new UserPermissionRepository()
+                .ListPermissionKeys()
+                .Entities.ToDictionary(x => x);
+            if (newList.Any(x => !allowedKeys.ContainsKey(x)))
+                throw new AccessViolationException();
+
             if (oldList.SetEquals(newList))
                 return new SaveResponse();
 

@@ -10,7 +10,7 @@ namespace Allocation.Allot.Forms
     [BasedOnRow(typeof(Entities.DeclarationDataRow))]
     public class DeclarationDataForm
     {
-        public String ApplicationUnit { get; set; }
+        //public String ApplicationUnit { get; set; }
         public String Flight { get; set; }
         public String MasterAwb { get; set; }
         public String SubAwb { get; set; }
