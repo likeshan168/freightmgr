@@ -619,6 +619,12 @@
     <Content Include="Modules\Common\Dashboard\DashboardIndexbak.cshtml" />
     <Content Include="ExcelTemplate\Template.xlsx" />
     <Content Include="Modules\Allot\DeclarationData\AbnormalReport.cshtml" />
+    <Content Include="App_Data\texts\user.texts.invariant.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\texts\user.texts.zh-CN.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -832,6 +838,7 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
+    <None Include="Properties\PublishProfiles\allocation.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1842,9 +1849,7 @@
     <Compile Include="Modules\Administration\Tenants\TenantsColumns.cs" />
     <Compile Include="Modules\Administration\Tenants\TenantsForm.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
