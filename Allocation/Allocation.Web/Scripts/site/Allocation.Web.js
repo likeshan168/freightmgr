@@ -18,7 +18,7 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var SignUpPanel = /** @class */ (function (_super) {
+        var SignUpPanel = (function (_super) {
             __extends(SignUpPanel, _super);
             function SignUpPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -55,11 +55,11 @@ var Allocation;
                 return _this;
             }
             SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
-            SignUpPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], SignUpPanel);
             return SignUpPanel;
         }(Serenity.PropertyPanel));
+        SignUpPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
 })(Allocation || (Allocation = {}));
@@ -67,7 +67,7 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var ResetPasswordPanel = /** @class */ (function (_super) {
+        var ResetPasswordPanel = (function (_super) {
             __extends(ResetPasswordPanel, _super);
             function ResetPasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -102,11 +102,11 @@ var Allocation;
                 return _this;
             }
             ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
-            ResetPasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ResetPasswordPanel);
             return ResetPasswordPanel;
         }(Serenity.PropertyPanel));
+        ResetPasswordPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ResetPasswordPanel);
         Membership.ResetPasswordPanel = ResetPasswordPanel;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
 })(Allocation || (Allocation = {}));
@@ -114,7 +114,7 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var ForgotPasswordPanel = /** @class */ (function (_super) {
+        var ForgotPasswordPanel = (function (_super) {
             __extends(ForgotPasswordPanel, _super);
             function ForgotPasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -138,11 +138,11 @@ var Allocation;
                 return _this;
             }
             ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
-            ForgotPasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ForgotPasswordPanel);
             return ForgotPasswordPanel;
         }(Serenity.PropertyPanel));
+        ForgotPasswordPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ForgotPasswordPanel);
         Membership.ForgotPasswordPanel = ForgotPasswordPanel;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
 })(Allocation || (Allocation = {}));
@@ -150,7 +150,7 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var ChangePasswordPanel = /** @class */ (function (_super) {
+        var ChangePasswordPanel = (function (_super) {
             __extends(ChangePasswordPanel, _super);
             function ChangePasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -184,11 +184,11 @@ var Allocation;
                 return _this;
             }
             ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
-            ChangePasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ChangePasswordPanel);
             return ChangePasswordPanel;
         }(Serenity.PropertyPanel));
+        ChangePasswordPanel = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ChangePasswordPanel);
         Membership.ChangePasswordPanel = ChangePasswordPanel;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
 })(Allocation || (Allocation = {}));
@@ -223,7 +223,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var UserPreferenceStorage = /** @class */ (function () {
+        var UserPreferenceStorage = (function () {
             function UserPreferenceStorage() {
             }
             UserPreferenceStorage.prototype.getItem = function (key) {
@@ -449,7 +449,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var ReportDialog = /** @class */ (function (_super) {
+        var ReportDialog = (function (_super) {
             __extends(ReportDialog, _super);
             function ReportDialog(options) {
                 var _this = _super.call(this, options) || this;
@@ -577,7 +577,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var ReportPage = /** @class */ (function (_super) {
+        var ReportPage = (function (_super) {
             __extends(ReportPage, _super);
             function ReportPage(element) {
                 var _this = _super.call(this, element) || this;
@@ -648,7 +648,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var LanguageSelection = /** @class */ (function (_super) {
+        var LanguageSelection = (function (_super) {
             __extends(LanguageSelection, _super);
             function LanguageSelection(select, currentLanguage) {
                 var _this = _super.call(this, select) || this;
@@ -690,7 +690,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var SidebarSearch = /** @class */ (function (_super) {
+        var SidebarSearch = (function (_super) {
             __extends(SidebarSearch, _super);
             function SidebarSearch(input, menuUL) {
                 var _this = _super.call(this, input) || this;
@@ -743,7 +743,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var ThemeSelection = /** @class */ (function (_super) {
+        var ThemeSelection = (function (_super) {
             __extends(ThemeSelection, _super);
             function ThemeSelection(select) {
                 var _this = _super.call(this, select) || this;
@@ -786,7 +786,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var MailDialog = /** @class */ (function (_super) {
+        var MailDialog = (function (_super) {
             __extends(MailDialog, _super);
             function MailDialog() {
                 var _this = _super.call(this) || this;
@@ -804,12 +804,12 @@ var Allocation;
             MailDialog.prototype.getLocalTextPrefix = function () { return Common.MailRow.localTextPrefix; };
             MailDialog.prototype.getNameProperty = function () { return Common.MailRow.nameProperty; };
             MailDialog.prototype.getService = function () { return Common.MailService.baseUrl; };
-            MailDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], MailDialog);
             return MailDialog;
         }(Serenity.EntityDialog));
+        MailDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], MailDialog);
         Common.MailDialog = MailDialog;
     })(Common = Allocation.Common || (Allocation.Common = {}));
 })(Allocation || (Allocation = {}));
@@ -817,7 +817,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var MailGrid = /** @class */ (function (_super) {
+        var MailGrid = (function (_super) {
             __extends(MailGrid, _super);
             function MailGrid(container) {
                 return _super.call(this, container) || this;
@@ -832,17 +832,17 @@ var Allocation;
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
                 return buttons;
             };
-            MailGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], MailGrid);
             return MailGrid;
         }(Serenity.EntityGrid));
+        MailGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], MailGrid);
         Common.MailGrid = MailGrid;
     })(Common = Allocation.Common || (Allocation.Common = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
 (function (Allocation) {
-    var BasicProgressDialog = /** @class */ (function (_super) {
+    var BasicProgressDialog = (function (_super) {
         __extends(BasicProgressDialog, _super);
         function BasicProgressDialog() {
             var _this = _super.call(this) || this;
@@ -924,7 +924,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var BulkServiceAction = /** @class */ (function () {
+        var BulkServiceAction = (function () {
             function BulkServiceAction() {
             }
             BulkServiceAction.prototype.createProgressDialog = function () {
@@ -1103,7 +1103,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var EnumSelectFormatter = /** @class */ (function () {
+        var EnumSelectFormatter = (function () {
             function EnumSelectFormatter() {
                 this.allowClear = true;
             }
@@ -1128,20 +1128,20 @@ var Allocation;
                 sb += "</select>";
                 return sb;
             };
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "enumKey", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "allowClear", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
-            EnumSelectFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], EnumSelectFormatter);
             return EnumSelectFormatter;
         }());
+        __decorate([
+            Serenity.Decorators.option()
+        ], EnumSelectFormatter.prototype, "enumKey", void 0);
+        __decorate([
+            Serenity.Decorators.option()
+        ], EnumSelectFormatter.prototype, "allowClear", void 0);
+        __decorate([
+            Serenity.Decorators.option()
+        ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
+        EnumSelectFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], EnumSelectFormatter);
         Common.EnumSelectFormatter = EnumSelectFormatter;
     })(Common = Allocation.Common || (Allocation.Common = {}));
 })(Allocation || (Allocation = {}));
@@ -1187,7 +1187,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var GridEditorBase = /** @class */ (function (_super) {
+        var GridEditorBase = (function (_super) {
             __extends(GridEditorBase, _super);
             function GridEditorBase(container) {
                 var _this = _super.call(this, container) || this;
@@ -1311,13 +1311,13 @@ var Allocation;
             };
             GridEditorBase.prototype.createQuickSearchInput = function () {
             };
-            GridEditorBase = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.editor(),
-                Serenity.Decorators.element("<div/>")
-            ], GridEditorBase);
             return GridEditorBase;
         }(Serenity.EntityGrid));
+        GridEditorBase = __decorate([
+            Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+            Serenity.Decorators.editor(),
+            Serenity.Decorators.element("<div/>")
+        ], GridEditorBase);
         Common.GridEditorBase = GridEditorBase;
     })(Common = Allocation.Common || (Allocation.Common = {}));
 })(Allocation || (Allocation = {}));
@@ -1325,7 +1325,7 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var GridEditorDialog = /** @class */ (function (_super) {
+        var GridEditorDialog = (function (_super) {
             __extends(GridEditorDialog, _super);
             function GridEditorDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1349,11 +1349,11 @@ var Allocation;
             GridEditorDialog.prototype.deleteHandler = function (options, callback) {
                 this.onDelete && this.onDelete(options, callback);
             };
-            GridEditorDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], GridEditorDialog);
             return GridEditorDialog;
         }(Serenity.EntityDialog));
+        GridEditorDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], GridEditorDialog);
         Common.GridEditorDialog = GridEditorDialog;
     })(Common = Allocation.Common || (Allocation.Common = {}));
 })(Allocation || (Allocation = {}));
@@ -1361,7 +1361,7 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var PromptDialog = /** @class */ (function (_super) {
+        var PromptDialog = PromptDialog_1 = (function (_super) {
             __extends(PromptDialog, _super);
             function PromptDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -1374,7 +1374,6 @@ var Allocation;
                 }
                 return _this;
             }
-            PromptDialog_1 = PromptDialog;
             PromptDialog.prototype.getDialogOptions = function () {
                 var _this = this;
                 var opt = _super.prototype.getDialogOptions.call(this);
@@ -1429,18 +1428,18 @@ var Allocation;
                     validateValue: function (v) { return validateValue(v); }
                 }).dialogOpen();
             };
-            PromptDialog = PromptDialog_1 = __decorate([
-                Serenity.Decorators.registerClass()
-            ], PromptDialog);
             return PromptDialog;
-            var PromptDialog_1;
         }(Serenity.PropertyDialog));
+        PromptDialog = PromptDialog_1 = __decorate([
+            Serenity.Decorators.registerClass()
+        ], PromptDialog);
         Membership.PromptDialog = PromptDialog;
+        var PromptDialog_1;
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
 (function (Allocation) {
-    var ServiceEditorBase = /** @class */ (function (_super) {
+    var ServiceEditorBase = (function (_super) {
         __extends(ServiceEditorBase, _super);
         function ServiceEditorBase(hidden, options) {
             var _this = _super.call(this, hidden, options) || this;
@@ -1532,11 +1531,11 @@ var Allocation;
             this.lastRequest = Q.serviceCall(options);
             this.lastRequest.then(function () { return _this.lastRequest = null; }, function () { return _this.lastRequest = null; });
         };
-        ServiceEditorBase = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ServiceEditorBase);
         return ServiceEditorBase;
     }(Serenity.Select2AjaxEditor));
+    ServiceEditorBase = __decorate([
+        Serenity.Decorators.registerClass()
+    ], ServiceEditorBase);
     Allocation.ServiceEditorBase = ServiceEditorBase;
 })(Allocation || (Allocation = {}));
 // thanks a lot to Brainweber Inc. for sponsoring this feature and letting us share it with community
@@ -1545,7 +1544,7 @@ var Serenity;
     /**
      * A mixin that can be applied to a DataGrid for card view functionality
      */
-    var CardViewMixin = /** @class */ (function () {
+    var CardViewMixin = (function () {
         function CardViewMixin(options) {
             var _this = this;
             this.options = options;
@@ -1672,7 +1671,7 @@ var Serenity;
     /**
      * A mixin that can be applied to a DataGrid for favorite views functionality
      */
-    var FavoriteViewsMixin = /** @class */ (function () {
+    var FavoriteViewsMixin = (function () {
         function FavoriteViewsMixin(options) {
             var _this = this;
             this.options = options;
@@ -1755,7 +1754,7 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var DeclarationDataDialog = /** @class */ (function (_super) {
+        var DeclarationDataDialog = (function (_super) {
             __extends(DeclarationDataDialog, _super);
             function DeclarationDataDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1767,13 +1766,13 @@ var Allocation;
             DeclarationDataDialog.prototype.getLocalTextPrefix = function () { return Allot.DeclarationDataRow.localTextPrefix; };
             DeclarationDataDialog.prototype.getNameProperty = function () { return Allot.DeclarationDataRow.nameProperty; };
             DeclarationDataDialog.prototype.getService = function () { return Allot.DeclarationDataService.baseUrl; };
-            DeclarationDataDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
-                Serenity.Decorators.panel()
-            ], DeclarationDataDialog);
             return DeclarationDataDialog;
         }(Serenity.EntityDialog));
+        DeclarationDataDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive(),
+            Serenity.Decorators.panel()
+        ], DeclarationDataDialog);
         Allot.DeclarationDataDialog = DeclarationDataDialog;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
@@ -1781,7 +1780,7 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var DeclarationDataExcelImportDialog = /** @class */ (function (_super) {
+        var DeclarationDataExcelImportDialog = (function (_super) {
             __extends(DeclarationDataExcelImportDialog, _super);
             function DeclarationDataExcelImportDialog() {
                 var _this = _super.call(this) || this;
@@ -1822,11 +1821,11 @@ var Allocation;
                     }
                 ];
             };
-            DeclarationDataExcelImportDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], DeclarationDataExcelImportDialog);
             return DeclarationDataExcelImportDialog;
         }(Serenity.PropertyDialog));
+        DeclarationDataExcelImportDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], DeclarationDataExcelImportDialog);
         Allot.DeclarationDataExcelImportDialog = DeclarationDataExcelImportDialog;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
@@ -1834,7 +1833,7 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var DeclarationDataGrid = /** @class */ (function (_super) {
+        var DeclarationDataGrid = (function (_super) {
             __extends(DeclarationDataGrid, _super);
             function DeclarationDataGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -2093,12 +2092,12 @@ var Allocation;
                 this.subawbEvent = null;
                 return response;
             };
-            DeclarationDataGrid = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.filterable()
-            ], DeclarationDataGrid);
             return DeclarationDataGrid;
         }(Serenity.EntityGrid));
+        DeclarationDataGrid = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.filterable()
+        ], DeclarationDataGrid);
         Allot.DeclarationDataGrid = DeclarationDataGrid;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
@@ -2106,17 +2105,17 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var FlightFormatter = /** @class */ (function () {
+        var FlightFormatter = (function () {
             function FlightFormatter() {
             }
             FlightFormatter.prototype.format = function (ctx) {
                 return "<span class='allot-flight'>" + Q.htmlEncode(ctx.value) + "</span>";
             };
-            FlightFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], FlightFormatter);
             return FlightFormatter;
         }());
+        FlightFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], FlightFormatter);
         Allot.FlightFormatter = FlightFormatter;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
@@ -2124,7 +2123,7 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var IsCheckedFormatter = /** @class */ (function () {
+        var IsCheckedFormatter = (function () {
             function IsCheckedFormatter() {
             }
             IsCheckedFormatter.prototype.format = function (ctx) {
@@ -2141,19 +2140,37 @@ var Allocation;
                     return "<span title='溢装收货' class='allot-overchecked'/>";
                 }
             };
-            IsCheckedFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], IsCheckedFormatter);
             return IsCheckedFormatter;
         }());
+        IsCheckedFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], IsCheckedFormatter);
         Allot.IsCheckedFormatter = IsCheckedFormatter;
+    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
+})(Allocation || (Allocation = {}));
+var Allocation;
+(function (Allocation) {
+    var Allot;
+    (function (Allot) {
+        var TenantFormatter = (function () {
+            function TenantFormatter() {
+            }
+            TenantFormatter.prototype.format = function (ctx) {
+                return "<span class='allot-tenants'>" + Q.htmlEncode(ctx.value) + "</span>";
+            };
+            return TenantFormatter;
+        }());
+        TenantFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], TenantFormatter);
+        Allot.TenantFormatter = TenantFormatter;
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var RoleCheckEditor = /** @class */ (function (_super) {
+        var RoleCheckEditor = (function (_super) {
             __extends(RoleCheckEditor, _super);
             function RoleCheckEditor(div) {
                 return _super.call(this, div) || this;
@@ -2181,11 +2198,11 @@ var Allocation;
                         Select2.util.stripDiacritics(item.text || '')
                             .toUpperCase().indexOf(this.searchText) >= 0);
             };
-            RoleCheckEditor = __decorate([
-                Serenity.Decorators.registerEditor()
-            ], RoleCheckEditor);
             return RoleCheckEditor;
         }(Serenity.CheckTreeEditor));
+        RoleCheckEditor = __decorate([
+            Serenity.Decorators.registerEditor()
+        ], RoleCheckEditor);
         Administration.RoleCheckEditor = RoleCheckEditor;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2193,7 +2210,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var UserRoleDialog = /** @class */ (function (_super) {
+        var UserRoleDialog = (function (_super) {
             __extends(UserRoleDialog, _super);
             function UserRoleDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -2229,11 +2246,11 @@ var Allocation;
             UserRoleDialog.prototype.getTemplate = function () {
                 return "<div id='~_Roles'></div>";
             };
-            UserRoleDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserRoleDialog);
             return UserRoleDialog;
         }(Serenity.TemplatedDialog));
+        UserRoleDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserRoleDialog);
         Administration.UserRoleDialog = UserRoleDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2241,7 +2258,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var PermissionCheckEditor = /** @class */ (function (_super) {
+        var PermissionCheckEditor = (function (_super) {
             __extends(PermissionCheckEditor, _super);
             function PermissionCheckEditor(container, opt) {
                 var _this = _super.call(this, container, opt) || this;
@@ -2549,11 +2566,11 @@ var Allocation;
                 enumerable: true,
                 configurable: true
             });
-            PermissionCheckEditor = __decorate([
-                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
-            ], PermissionCheckEditor);
             return PermissionCheckEditor;
         }(Serenity.DataGrid));
+        PermissionCheckEditor = __decorate([
+            Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
+        ], PermissionCheckEditor);
         Administration.PermissionCheckEditor = PermissionCheckEditor;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2561,7 +2578,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var UserPermissionDialog = /** @class */ (function (_super) {
+        var UserPermissionDialog = (function (_super) {
             __extends(UserPermissionDialog, _super);
             function UserPermissionDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -2613,11 +2630,11 @@ var Allocation;
             UserPermissionDialog.prototype.getTemplate = function () {
                 return '<div id="~_Permissions"></div>';
             };
-            UserPermissionDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserPermissionDialog);
             return UserPermissionDialog;
         }(Serenity.TemplatedDialog));
+        UserPermissionDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserPermissionDialog);
         Administration.UserPermissionDialog = UserPermissionDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2625,7 +2642,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var UserDialog = /** @class */ (function (_super) {
+        var UserDialog = (function (_super) {
             __extends(UserDialog, _super);
             function UserDialog() {
                 var _this = _super.call(this) || this;
@@ -2692,11 +2709,11 @@ var Allocation;
                     items = items.filter(function (x) { return x.name != Administration.UserRow.Fields.TenantId; });
                 return items;
             };
-            UserDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserDialog);
             return UserDialog;
         }(Serenity.EntityDialog));
+        UserDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserDialog);
         Administration.UserDialog = UserDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2704,7 +2721,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var UserGrid = /** @class */ (function (_super) {
+        var UserGrid = (function (_super) {
             __extends(UserGrid, _super);
             function UserGrid(container) {
                 return _super.call(this, container) || this;
@@ -2718,11 +2735,11 @@ var Allocation;
             UserGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.UserRow.Fields.Username];
             };
-            UserGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserGrid);
             return UserGrid;
         }(Serenity.EntityGrid));
+        UserGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], UserGrid);
         Administration.UserGrid = UserGrid;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2746,7 +2763,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var TranslationGrid = /** @class */ (function (_super) {
+        var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -2931,11 +2948,11 @@ var Allocation;
             TranslationGrid.prototype.usePager = function () {
                 return false;
             };
-            TranslationGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], TranslationGrid);
             return TranslationGrid;
         }(Serenity.EntityGrid));
+        TranslationGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TranslationGrid);
         Administration.TranslationGrid = TranslationGrid;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2943,7 +2960,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var TenantsDialog = /** @class */ (function (_super) {
+        var TenantsDialog = (function (_super) {
             __extends(TenantsDialog, _super);
             function TenantsDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2955,13 +2972,13 @@ var Allocation;
             TenantsDialog.prototype.getLocalTextPrefix = function () { return Administration.TenantsRow.localTextPrefix; };
             TenantsDialog.prototype.getNameProperty = function () { return Administration.TenantsRow.nameProperty; };
             TenantsDialog.prototype.getService = function () { return Administration.TenantsService.baseUrl; };
-            TenantsDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
-                Serenity.Decorators.panel()
-            ], TenantsDialog);
             return TenantsDialog;
         }(Serenity.EntityDialog));
+        TenantsDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive(),
+            Serenity.Decorators.panel()
+        ], TenantsDialog);
         Administration.TenantsDialog = TenantsDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2969,7 +2986,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var TenantsGrid = /** @class */ (function (_super) {
+        var TenantsGrid = (function (_super) {
             __extends(TenantsGrid, _super);
             function TenantsGrid(container) {
                 return _super.call(this, container) || this;
@@ -2979,11 +2996,11 @@ var Allocation;
             TenantsGrid.prototype.getIdProperty = function () { return Administration.TenantsRow.idProperty; };
             TenantsGrid.prototype.getLocalTextPrefix = function () { return Administration.TenantsRow.localTextPrefix; };
             TenantsGrid.prototype.getService = function () { return Administration.TenantsService.baseUrl; };
-            TenantsGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], TenantsGrid);
             return TenantsGrid;
         }(Serenity.EntityGrid));
+        TenantsGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TenantsGrid);
         Administration.TenantsGrid = TenantsGrid;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -2991,7 +3008,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var RolePermissionDialog = /** @class */ (function (_super) {
+        var RolePermissionDialog = (function (_super) {
             __extends(RolePermissionDialog, _super);
             function RolePermissionDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -3036,11 +3053,11 @@ var Allocation;
             RolePermissionDialog.prototype.getTemplate = function () {
                 return '<div id="~_Permissions"></div>';
             };
-            RolePermissionDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RolePermissionDialog);
             return RolePermissionDialog;
         }(Serenity.TemplatedDialog));
+        RolePermissionDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RolePermissionDialog);
         Administration.RolePermissionDialog = RolePermissionDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -3048,7 +3065,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var RoleDialog = /** @class */ (function (_super) {
+        var RoleDialog = (function (_super) {
             __extends(RoleDialog, _super);
             function RoleDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3080,11 +3097,11 @@ var Allocation;
                 _super.prototype.updateInterface.call(this);
                 this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
-            RoleDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RoleDialog);
             return RoleDialog;
         }(Serenity.EntityDialog));
+        RoleDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RoleDialog);
         Administration.RoleDialog = RoleDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -3092,7 +3109,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var RoleGrid = /** @class */ (function (_super) {
+        var RoleGrid = (function (_super) {
             __extends(RoleGrid, _super);
             function RoleGrid(container) {
                 return _super.call(this, container) || this;
@@ -3105,11 +3122,11 @@ var Allocation;
             RoleGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.RoleRow.Fields.RoleName];
             };
-            RoleGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RoleGrid);
             return RoleGrid;
         }(Serenity.EntityGrid));
+        RoleGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], RoleGrid);
         Administration.RoleGrid = RoleGrid;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -3117,7 +3134,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var LanguageDialog = /** @class */ (function (_super) {
+        var LanguageDialog = (function (_super) {
             __extends(LanguageDialog, _super);
             function LanguageDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3129,11 +3146,11 @@ var Allocation;
             LanguageDialog.prototype.getLocalTextPrefix = function () { return Administration.LanguageRow.localTextPrefix; };
             LanguageDialog.prototype.getNameProperty = function () { return Administration.LanguageRow.nameProperty; };
             LanguageDialog.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
-            LanguageDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LanguageDialog);
             return LanguageDialog;
         }(Serenity.EntityDialog));
+        LanguageDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], LanguageDialog);
         Administration.LanguageDialog = LanguageDialog;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -3141,7 +3158,7 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var LanguageGrid = /** @class */ (function (_super) {
+        var LanguageGrid = (function (_super) {
             __extends(LanguageGrid, _super);
             function LanguageGrid(container) {
                 return _super.call(this, container) || this;
@@ -3154,11 +3171,11 @@ var Allocation;
             LanguageGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.LanguageRow.Fields.LanguageName];
             };
-            LanguageGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LanguageGrid);
             return LanguageGrid;
         }(Serenity.EntityGrid));
+        LanguageGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], LanguageGrid);
         Administration.LanguageGrid = LanguageGrid;
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
@@ -3166,14 +3183,14 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var LanguageForm = /** @class */ (function (_super) {
+        var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            LanguageForm.formKey = 'Administration.Language';
             return LanguageForm;
         }(Serenity.PrefixedContext));
+        LanguageForm.formKey = 'Administration.Language';
         Administration.LanguageForm = LanguageForm;
         [['LanguageId', function () { return Serenity.StringEditor; }], ['LanguageName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
@@ -3232,14 +3249,14 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var RoleForm = /** @class */ (function (_super) {
+        var RoleForm = (function (_super) {
             __extends(RoleForm, _super);
             function RoleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            RoleForm.formKey = 'Administration.Role';
             return RoleForm;
         }(Serenity.PrefixedContext));
+        RoleForm.formKey = 'Administration.Role';
         Administration.RoleForm = RoleForm;
         [['RoleName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
@@ -3306,7 +3323,8 @@ var Allocation;
             })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
             [
                 'RoleId',
-                'RoleName'
+                'RoleName',
+                'TenantId'
             ].forEach(function (x) { return Fields[x] = x; });
         })(RoleRow = Administration.RoleRow || (Administration.RoleRow = {}));
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
@@ -3340,24 +3358,16 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var TenantsForm = /** @class */ (function (_super) {
+        var TenantsForm = (function (_super) {
             __extends(TenantsForm, _super);
             function TenantsForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            TenantsForm.formKey = 'Administration.Tenants';
             return TenantsForm;
         }(Serenity.PrefixedContext));
+        TenantsForm.formKey = 'Administration.Tenants';
         Administration.TenantsForm = TenantsForm;
-        [,
-            ['TenantName', function () { return Serenity.StringEditor; }]
-        ].forEach(function (x) { return Object.defineProperty(TenantsForm.prototype, x[0], {
-            get: function () {
-                return this.w(x[0], x[1]());
-            },
-            enumerable: true,
-            configurable: true
-        }); });
+        [['TenantName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TenantsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
@@ -3369,6 +3379,11 @@ var Allocation;
             TenantsRow.idProperty = 'TenantId';
             TenantsRow.nameProperty = 'TenantName';
             TenantsRow.localTextPrefix = 'Administration.Tenants';
+            TenantsRow.lookupKey = 'Administration.Tenant';
+            function getLookup() {
+                return Q.getLookup('Administration.Tenant');
+            }
+            TenantsRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = TenantsRow.Fields || (TenantsRow.Fields = {}));
@@ -3442,16 +3457,16 @@ var Allocation;
 (function (Allocation) {
     var Administration;
     (function (Administration) {
-        var UserForm = /** @class */ (function (_super) {
+        var UserForm = (function (_super) {
             __extends(UserForm, _super);
             function UserForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            UserForm.formKey = 'Administration.User';
             return UserForm;
         }(Serenity.PrefixedContext));
+        UserForm.formKey = 'Administration.User';
         Administration.UserForm = UserForm;
-        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['MobilePhoneNumber', function () { return Serenity.StringEditor; }], ['MobilePhoneVerified', function () { return Serenity.BooleanEditor; }], ['TwoFactorAuth', function () { return Serenity.EnumEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['MobilePhoneNumber', function () { return Serenity.StringEditor; }], ['MobilePhoneVerified', function () { return Serenity.BooleanEditor; }], ['TwoFactorAuth', function () { return Serenity.EnumEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }], ['TenantId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Allocation.Administration || (Allocation.Administration = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
@@ -3575,6 +3590,8 @@ var Allocation;
                 'TwoFactorAuth',
                 'UserImage',
                 'LastDirectoryUpdate',
+                'TenantId',
+                'TenantName',
                 'IsActive',
                 'Password',
                 'PasswordConfirm',
@@ -3616,14 +3633,14 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var DeclarationDataExcelImportForm = /** @class */ (function (_super) {
+        var DeclarationDataExcelImportForm = (function (_super) {
             __extends(DeclarationDataExcelImportForm, _super);
             function DeclarationDataExcelImportForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            DeclarationDataExcelImportForm.formKey = 'Allot.DeclarationDataExcelImport';
             return DeclarationDataExcelImportForm;
         }(Serenity.PrefixedContext));
+        DeclarationDataExcelImportForm.formKey = 'Allot.DeclarationDataExcelImport';
         Allot.DeclarationDataExcelImportForm = DeclarationDataExcelImportForm;
         [['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(DeclarationDataExcelImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
@@ -3653,16 +3670,16 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var DeclarationDataForm = /** @class */ (function (_super) {
+        var DeclarationDataForm = (function (_super) {
             __extends(DeclarationDataForm, _super);
             function DeclarationDataForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            DeclarationDataForm.formKey = 'Allot.DeclarationData';
             return DeclarationDataForm;
         }(Serenity.PrefixedContext));
+        DeclarationDataForm.formKey = 'Allot.DeclarationData';
         Allot.DeclarationDataForm = DeclarationDataForm;
-        [['ApplicationUnit', function () { return Serenity.StringEditor; }], ['Flight', function () { return Serenity.StringEditor; }], ['MasterAwb', function () { return Serenity.StringEditor; }], ['SubAwb', function () { return Serenity.StringEditor; }], ['Amount', function () { return Serenity.IntegerEditor; }], ['Weight', function () { return Serenity.DecimalEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['IsChecked', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(DeclarationDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Flight', function () { return Serenity.StringEditor; }], ['MasterAwb', function () { return Serenity.StringEditor; }], ['SubAwb', function () { return Serenity.StringEditor; }], ['Amount', function () { return Serenity.IntegerEditor; }], ['Weight', function () { return Serenity.DecimalEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['IsChecked', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(DeclarationDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
 })(Allocation || (Allocation = {}));
 var Allocation;
@@ -3691,7 +3708,9 @@ var Allocation;
                 'Weight',
                 'Description',
                 'Flight',
-                'IsChecked'
+                'IsChecked',
+                'TenantId',
+                'TenantName'
             ].forEach(function (x) { return Fields[x] = x; });
         })(DeclarationDataRow = Allot.DeclarationDataRow || (Allot.DeclarationDataRow = {}));
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));
@@ -3762,14 +3781,14 @@ var Allocation;
 (function (Allocation) {
     var Common;
     (function (Common) {
-        var MailForm = /** @class */ (function (_super) {
+        var MailForm = (function (_super) {
             __extends(MailForm, _super);
             function MailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            MailForm.formKey = 'Common.Mail';
             return MailForm;
         }(Serenity.PrefixedContext));
+        MailForm.formKey = 'Common.Mail';
         Common.MailForm = MailForm;
         [['Uid', function () { return Serenity.StringEditor; }], ['Subject', function () { return Serenity.StringEditor; }], ['Body', function () { return Serenity.HtmlNoteContentEditor; }], ['MailFrom', function () { return Serenity.StringEditor; }], ['MailTo', function () { return Serenity.StringEditor; }], ['ReplyTo', function () { return Serenity.StringEditor; }], ['Cc', function () { return Serenity.StringEditor; }], ['Bcc', function () { return Serenity.StringEditor; }], ['Priority', function () { return Serenity.EnumEditor; }], ['Status', function () { return Serenity.EnumEditor; }], ['RetryCount', function () { return Serenity.IntegerEditor; }], ['LockExpiration', function () { return Serenity.DateTimeEditor; }], ['ErrorMessage', function () { return Serenity.StringEditor; }], ['SentDate', function () { return Serenity.DateTimeEditor; }], ['InsertUser', function () { return Serenity.IntegerEditor; }], ['InsertDate', function () { return Serenity.DateTimeEditor; }]].forEach(function (x) { return Object.defineProperty(MailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Common = Allocation.Common || (Allocation.Common = {}));
@@ -3908,14 +3927,14 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var ChangePasswordForm = /** @class */ (function (_super) {
+        var ChangePasswordForm = (function (_super) {
             __extends(ChangePasswordForm, _super);
             function ChangePasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ChangePasswordForm.formKey = 'Membership.ChangePassword';
             return ChangePasswordForm;
         }(Serenity.PrefixedContext));
+        ChangePasswordForm.formKey = 'Membership.ChangePassword';
         Membership.ChangePasswordForm = ChangePasswordForm;
         [['OldPassword', function () { return Serenity.PasswordEditor; }], ['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
@@ -3924,14 +3943,14 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var ForgotPasswordForm = /** @class */ (function (_super) {
+        var ForgotPasswordForm = (function (_super) {
             __extends(ForgotPasswordForm, _super);
             function ForgotPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
             return ForgotPasswordForm;
         }(Serenity.PrefixedContext));
+        ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
         Membership.ForgotPasswordForm = ForgotPasswordForm;
         [['Email', function () { return Serenity.EmailEditor; }]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
@@ -3940,14 +3959,14 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var LoginForm = /** @class */ (function (_super) {
+        var LoginForm = (function (_super) {
             __extends(LoginForm, _super);
             function LoginForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            LoginForm.formKey = 'Membership.Login';
             return LoginForm;
         }(Serenity.PrefixedContext));
+        LoginForm.formKey = 'Membership.Login';
         Membership.LoginForm = LoginForm;
         [['Username', function () { return Serenity.StringEditor; }], ['Password', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
@@ -3956,14 +3975,14 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var ResetPasswordForm = /** @class */ (function (_super) {
+        var ResetPasswordForm = (function (_super) {
             __extends(ResetPasswordForm, _super);
             function ResetPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ResetPasswordForm.formKey = 'Membership.ResetPassword';
             return ResetPasswordForm;
         }(Serenity.PrefixedContext));
+        ResetPasswordForm.formKey = 'Membership.ResetPassword';
         Membership.ResetPasswordForm = ResetPasswordForm;
         [['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));
@@ -3972,14 +3991,14 @@ var Allocation;
 (function (Allocation) {
     var Membership;
     (function (Membership) {
-        var SignUpForm = /** @class */ (function (_super) {
+        var SignUpForm = (function (_super) {
             __extends(SignUpForm, _super);
             function SignUpForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            SignUpForm.formKey = 'Membership.SignUp';
             return SignUpForm;
         }(Serenity.PrefixedContext));
+        SignUpForm.formKey = 'Membership.SignUp';
         Membership.SignUpForm = SignUpForm;
         [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Allocation.Membership || (Allocation.Membership = {}));

@@ -413,6 +413,11 @@ declare namespace Allocation.Allot {
         format(ctx: Slick.FormatterContext): "<span title='已收货' class='allot-checked'/>" | "<span title='未收货' class='allot-nochecked'/>" | "<span title='溢装收货' class='allot-overchecked'/>";
     }
 }
+declare namespace Allocation.Allot {
+    class TenantFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
 declare namespace Allocation.Administration {
     class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
         private searchText;
@@ -724,6 +729,7 @@ declare namespace Allocation.Administration {
     interface RoleRow {
         RoleId?: number;
         RoleName?: string;
+        TenantId?: number;
     }
     namespace RoleRow {
         const idProperty = "RoleId";
@@ -734,6 +740,7 @@ declare namespace Allocation.Administration {
         namespace Fields {
             const RoleId: string;
             const RoleName: string;
+            const TenantId: string;
         }
     }
 }
@@ -755,6 +762,8 @@ declare namespace Allocation.Administration {
     }
 }
 declare namespace Allocation.Administration {
+}
+declare namespace Allocation.Administration {
     class TenantsForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -771,9 +780,11 @@ declare namespace Allocation.Administration {
         const idProperty = "TenantId";
         const nameProperty = "TenantName";
         const localTextPrefix = "Administration.Tenants";
+        const lookupKey = "Administration.Tenant";
+        function getLookup(): Q.Lookup<TenantsRow>;
         namespace Fields {
-            const TenantId: any;
-            const TenantName: any;
+            const TenantId: string;
+            const TenantName: string;
         }
     }
 }
@@ -850,6 +861,7 @@ declare namespace Allocation.Administration {
         Password: Serenity.PasswordEditor;
         PasswordConfirm: Serenity.PasswordEditor;
         Source: Serenity.StringEditor;
+        TenantId: Serenity.LookupEditor;
     }
 }
 declare namespace Allocation.Administration {
@@ -965,6 +977,8 @@ declare namespace Allocation.Administration {
         TwoFactorAuth?: TwoFactorAuthType;
         UserImage?: string;
         LastDirectoryUpdate?: string;
+        TenantId?: number;
+        TenantName?: string;
         IsActive?: number;
         Password?: string;
         PasswordConfirm?: string;
@@ -993,6 +1007,8 @@ declare namespace Allocation.Administration {
             const TwoFactorAuth: string;
             const UserImage: string;
             const LastDirectoryUpdate: string;
+            const TenantId: string;
+            const TenantName: string;
             const IsActive: string;
             const Password: string;
             const PasswordConfirm: string;
@@ -1046,7 +1062,6 @@ declare namespace Allocation.Allot {
         static formKey: string;
     }
     interface DeclarationDataForm {
-        ApplicationUnit: Serenity.StringEditor;
         Flight: Serenity.StringEditor;
         MasterAwb: Serenity.StringEditor;
         SubAwb: Serenity.StringEditor;
@@ -1067,6 +1082,8 @@ declare namespace Allocation.Allot {
         Description?: string;
         Flight?: string;
         IsChecked?: StateKind;
+        TenantId?: number;
+        TenantName?: string;
     }
     namespace DeclarationDataRow {
         const idProperty = "Id";
@@ -1084,6 +1101,8 @@ declare namespace Allocation.Allot {
             const Description: string;
             const Flight: string;
             const IsChecked: string;
+            const TenantId: string;
+            const TenantName: string;
         }
     }
 }

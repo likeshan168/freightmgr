@@ -1,5 +1,4 @@
-﻿
-namespace Allocation.Administration {
+﻿namespace Allocation.Administration {
     export namespace TenantsService {
         export const baseUrl = 'Administration/Tenants';
 
@@ -24,10 +23,11 @@ namespace Allocation.Administration {
             'Retrieve', 
             'List'
         ].forEach(x => {
-            (<any>TenantsService)[x] = function (r, s, o) { 
-                return Q.serviceRequest(baseUrl + '/' + x, r, s, o); 
+            (<any>TenantsService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
             };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }
+

@@ -12,6 +12,8 @@
         TwoFactorAuth?: TwoFactorAuthType;
         UserImage?: string;
         LastDirectoryUpdate?: string;
+        TenantId?: number;
+        TenantName?: string;
         IsActive?: number;
         Password?: string;
         PasswordConfirm?: string;
@@ -45,6 +47,8 @@
             export declare const TwoFactorAuth: string;
             export declare const UserImage: string;
             export declare const LastDirectoryUpdate: string;
+            export declare const TenantId: string;
+            export declare const TenantName: string;
             export declare const IsActive: string;
             export declare const Password: string;
             export declare const PasswordConfirm: string;
@@ -67,6 +71,8 @@
             'TwoFactorAuth', 
             'UserImage', 
             'LastDirectoryUpdate', 
+            'TenantId', 
+            'TenantName', 
             'IsActive', 
             'Password', 
             'PasswordConfirm', 

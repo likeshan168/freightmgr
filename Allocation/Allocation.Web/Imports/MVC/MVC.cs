@@ -16,6 +16,11 @@ namespace MVC
                 public const string RoleIndex = "~/Modules/Administration/Role/RoleIndex.cshtml";
             }
 
+            public static class Tenants
+            {
+                public const string TenantsIndex = "~/Modules/Administration/Tenants/TenantsIndex.cshtml";
+            }
+
             public static class Translation
             {
                 public const string TranslationIndex = "~/Modules/Administration/Translation/TranslationIndex.cshtml";
@@ -32,7 +37,9 @@ namespace MVC
         {
             public static class DeclarationData
             {
+                public const string AbnormalReport = "~/Modules/Allot/DeclarationData/AbnormalReport.cshtml";
                 public const string DeclarationDataIndex = "~/Modules/Allot/DeclarationData/DeclarationDataIndex.cshtml";
+                public const string NormalReport = "~/Modules/Allot/DeclarationData/NormalReport.cshtml";
             }
 
         }

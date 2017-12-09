@@ -26,6 +26,7 @@ namespace Allocation.Allot.Columns
         //[LookupEditor(typeof(DeclarationDataApplicationUnitLookup))]
         //public String ApplicationUnit { get; set; }
         [EditLink]
+        [TenantFormatter]
         //[QuickFilter, QuickFilterOption("multiple", true)]
         //[LookupEditor(typeof(TenantsRow))]
         public String TenantName { get; set; }
