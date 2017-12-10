@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Allocation.Allot.Repositories
 {
     using Serenity;
@@ -35,6 +37,14 @@ namespace Allocation.Allot.Repositories
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyListHandler().Process(connection, request);
+        }
+
+        public List<MyRow> GetList( ListRequest request)
+        {
+            using (var connection = SqlConnections.NewFor<MyRow>())
+            {
+                return new MyListHandler().Process(connection, request).Entities;
+            }
         }
 
         private class MySaveHandler : SaveRequestHandler<MyRow> { }

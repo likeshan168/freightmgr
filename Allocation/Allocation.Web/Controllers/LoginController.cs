@@ -1,103 +1,41 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web.Http;
+using Allocation.Administration.Repositories;
+using Allocation.Allot.Repositories;
+using Allocation.Common;
+using Allocation.Membership;
 using Allocation.Modules.Common;
+using Serenity;
+using Serenity.Abstractions;
+using Serenity.Services;
 
-namespace Allocation.Membership.Pages
+namespace Allocation.Controllers
 {
-    using Administration.Repositories;
-    using Common;
-    using Serenity;
-    using Serenity.Abstractions;
-    using Serenity.Services;
-    using System;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using System.Net.Http;
-
-    [RoutePrefix("Account"), Route("{action=index}")]
-    public partial class AccountController : Controller
+    public class LoginController : BaseApiController
     {
-        public static bool UseAdminLTELoginBox = false;
-
-        [HttpGet]
-        public ActionResult Login(int? denied, string activated, string returnUrl)
+        private DeclarationDataRepository declarationDataRepository = new DeclarationDataRepository();
+        public HttpResponseMessage Post(LoginRequest request)
         {
-            if (denied == 1)
-                return View(MVC.Views.Errors.AccessDenied,
-                    (object) (FormsAuthentication.LoginUrl + "?returnUrl=" + Uri.EscapeDataString(returnUrl)));
-            ViewData["Activated"] = activated;
-            ViewData["HideLeftNavigation"] = true;
-
-            if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.AccountLogin_AdminLTE);
-            else
-                return View(MVC.Views.Membership.Account.AccountLogin);
-        }
-
-        [HttpGet]
-        public ActionResult AccessDenied(string returnURL)
-        {
-            ViewData["HideLeftNavigation"] = !Authorization.IsLoggedIn;
-
-            return View(MVC.Views.Errors.AccessDenied, (object) returnURL);
-        }
-
-        [HttpPost, JsonFilter]
-        public Result<ServiceResponse> Login(LoginRequest request)
-        {
-            return this.ExecuteMethod(() =>
-            {
-                request.CheckNotNull();
-
-                if (string.IsNullOrEmpty(request.Username))
-                    throw new ArgumentNullException("username");
-
-                var username = request.Username;
-
-                if (Dependency.Resolve<IAuthenticationService>().Validate(ref username, request.Password))
-                {
-                    CheckTwoFactorAuthentication(username, request);
-
-                    WebSecurityHelper.SetAuthenticationTicket(username, false);
-                    return new ServiceResponse();
-                }
-
-                throw new ValidationError("AuthenticationError", Texts.Validation.AuthenticationError);
-            });
-        }
-
-        [HttpPost, JsonFilter]
-        public HttpResponseMessage LoginForApp(LoginRequest request)
-        {
-            HttpResponseMessage responseMessage = new HttpResponseMessage();
             LoginResponse response = new LoginResponse();
-            var formatter = new JsonMediaTypeFormatter();
-            formatter.SerializerSettings =
-                new Newtonsoft.Json.JsonSerializerSettings
-                {
-                    NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
-                };
             if (request == null)
             {
                 response.IsSuccess = false;
                 response.Result = "请求的数据不能为空";
-                responseMessage.StatusCode = HttpStatusCode.BadRequest;
-               
-                responseMessage.Content = new ObjectContent<LoginResponse>(response,formatter);
 
-                return responseMessage;
+                return BuildErrorResult(HttpStatusCode.BadRequest, response);
             }
             if (String.IsNullOrWhiteSpace(request.Username))
             {
-                responseMessage.StatusCode = HttpStatusCode.BadRequest;
                 response.IsSuccess = false;
                 response.Result = "用户名不能为空";
-                responseMessage.Content = new ObjectContent<LoginResponse>(response, formatter,"application/json");
-                return responseMessage;
+                return BuildErrorResult(HttpStatusCode.BadRequest, response);
             }
-           
+
 
             var username = request.Username;
 
@@ -108,24 +46,18 @@ namespace Allocation.Membership.Pages
                 WebSecurityHelper.SetAuthenticationTicket(username, false);
                 response.IsSuccess = true;
                 response.Result = "登录成功";
-                responseMessage.StatusCode = HttpStatusCode.OK;
-                responseMessage.Content = new ObjectContent<LoginResponse>(response, formatter);
-                return responseMessage;
+                return BuildSuccessResult(HttpStatusCode.OK, response);
             }
-            
+
             response.IsSuccess = false;
             response.Result = "用户名或密码不正确";
-            responseMessage.StatusCode = HttpStatusCode.BadRequest;
-            responseMessage.Content = new ObjectContent<LoginResponse>(response, formatter);
-            return responseMessage;
+            return BuildErrorResult(HttpStatusCode.BadRequest, response);
         }
 
-        [Serializable]
-        private class TwoFactorData
+        public HttpResponseMessage Get()
         {
-            public string Username { get; set; }
-            public int RetryCount { get; set; }
-            public int TwoFactorCode { get; set; }
+            var list = declarationDataRepository.GetList(new ListRequest());
+            return BuildSuccessResult(HttpStatusCode.OK, list);
         }
 
         private void CheckTwoFactorAuthentication(string username, LoginRequest request)
@@ -140,7 +72,7 @@ namespace Allocation.Membership.Pages
                 var key = "TwoFactorAuth:" + request.TwoFactorGuid;
                 var data = DistributedCache.Get<TwoFactorData>(key);
                 if (data == null || data.Username == null || data.Username != username)
-                    throw new ValidationError("Can't validate credentials. Please try login again!");
+                    throw new Serenity.Services.ValidationError("Can't validate credentials. Please try login again!");
 
                 data.RetryCount++;
                 if (data.RetryCount > 3)
@@ -226,18 +158,12 @@ namespace Allocation.Membership.Pages
                     authenticationMessage + "|" + twoFactorGuid, "Two factor authentication is required!");
             }
         }
-
-        private ActionResult Error(string message)
+        [Serializable]
+        private class TwoFactorData
         {
-            return View(MVC.Views.Errors.ValidationError,
-                new ValidationError(Texts.Validation.InvalidResetToken));
-        }
-
-        public ActionResult Signout()
-        {
-            Session.Abandon();
-            FormsAuthentication.SignOut();
-            return new RedirectResult("~/");
+            public string Username { get; set; }
+            public int RetryCount { get; set; }
+            public int TwoFactorCode { get; set; }
         }
     }
 }

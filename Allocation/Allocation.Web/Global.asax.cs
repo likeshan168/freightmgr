@@ -1,4 +1,9 @@
 ﻿
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Web.Http;
+using System.Xml;
+
 namespace Allocation
 {
     using System;
@@ -22,6 +27,8 @@ namespace Allocation
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
+
+            GlobalConfiguration.Configure(WebApiConfig.Register);
 
             SiteInitialization.ApplicationStart();
         }
@@ -54,6 +61,36 @@ namespace Allocation
 
         protected void Application_Error(object sender, EventArgs e)
         {
+        }
+    }
+
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // Web API routes
+            config.MapHttpAttributeRoutes();
+            config.Formatters.Add(new BrowserJsonFormatter());
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+        }
+    }
+
+    public class BrowserJsonFormatter : JsonMediaTypeFormatter
+    {
+        public BrowserJsonFormatter()
+        {
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+        }
+
+        public override void SetDefaultContentHeaders(Type type, HttpContentHeaders headers, MediaTypeHeaderValue mediaType)
+        {
+            base.SetDefaultContentHeaders(type, headers, mediaType);
+            headers.ContentType = new MediaTypeHeaderValue("application/json");
         }
     }
 }
