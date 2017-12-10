@@ -1,4 +1,5 @@
-﻿
+﻿using Allocation.Modules.Common;
+
 namespace Allocation.Membership.Pages
 {
     using Administration.Repositories;
@@ -22,7 +23,7 @@ namespace Allocation.Membership.Pages
         {
             if (denied == 1)
                 return View(MVC.Views.Errors.AccessDenied,
-                    (object)(FormsAuthentication.LoginUrl + "?returnUrl=" + Uri.EscapeDataString(returnUrl)));
+                    (object) (FormsAuthentication.LoginUrl + "?returnUrl=" + Uri.EscapeDataString(returnUrl)));
             ViewData["Activated"] = activated;
             ViewData["HideLeftNavigation"] = true;
 
@@ -37,7 +38,7 @@ namespace Allocation.Membership.Pages
         {
             ViewData["HideLeftNavigation"] = !Authorization.IsLoggedIn;
 
-            return View(MVC.Views.Errors.AccessDenied, (object)returnURL);
+            return View(MVC.Views.Errors.AccessDenied, (object) returnURL);
         }
 
         [HttpPost, JsonFilter]
@@ -56,11 +57,47 @@ namespace Allocation.Membership.Pages
                 {
                     CheckTwoFactorAuthentication(username, request);
 
-                    WebSecurityHelper.SetAuthenticationTicket(username, false); return new ServiceResponse();
+                    WebSecurityHelper.SetAuthenticationTicket(username, false);
+                    return new ServiceResponse();
                 }
 
                 throw new ValidationError("AuthenticationError", Texts.Validation.AuthenticationError);
             });
+        }
+
+        [HttpPost, JsonFilter]
+        public LoginResponse LoginForApp(LoginRequest request)
+        {
+            LoginResponse response = new LoginResponse();
+            if (request == null)
+            {
+                response.IsSuccess = false;
+                response.Result = "请求的数据不能为空";
+                return response;
+            }
+            if (String.IsNullOrWhiteSpace(request.Username))
+            {
+                response.IsSuccess = false;
+                response.Result = "用户名不能为空";
+                return response;
+            }
+           
+
+            var username = request.Username;
+
+            if (Dependency.Resolve<IAuthenticationService>().Validate(ref username, request.Password))
+            {
+                CheckTwoFactorAuthentication(username, request);
+
+                WebSecurityHelper.SetAuthenticationTicket(username, false);
+                response.IsSuccess = true;
+                response.Result = "登录成功";
+                return response;
+            }
+            
+            response.IsSuccess = false;
+            response.Result = "用户名或密码不正确";
+            return response;
         }
 
         [Serializable]
@@ -129,7 +166,8 @@ namespace Allocation.Membership.Pages
                 // this is to prevent users from sending too many SMS in a certain time interval
                 var throttler = new Throttler("TwoFactorAuthThrottle:" + username, TimeSpan.FromMinutes(5), 10);
                 if (!throttler.Check())
-                    throw new ValidationError("Can't proceed with two factor authentication. You are over your validation limit!");
+                    throw new ValidationError(
+                        "Can't proceed with two factor authentication. You are over your validation limit!");
 
                 var twoFactorGuid = Guid.NewGuid().ToString("N");
 
@@ -140,13 +178,18 @@ namespace Allocation.Membership.Pages
                     Dependency.Resolve<Administration.ISMSService>().Send(
                         phoneNumber: mobile,
                         text: "Please use code " + data.TwoFactorCode + " for Allocation login.",
-                        reason: "Sent by Allocation system for two factor authenication by SMS (" + user.Username + ")");
+                        reason: "Sent by Allocation system for two factor authenication by SMS (" + user.Username +
+                                ")");
 
                     // mask mobile number
-                    mobile = mobile.Substring(0, 2) + new string('*', mobile.Length - 4) + mobile.Substring(mobile.Length - 2, 2);
-                    authenticationMessage = "Please enter code sent to your mobile phone with number " + mobile + " in <span class='counter'>{0}</span> seconds." +
-                        ((Dependency.Resolve<Administration.ISMSService>() is Administration.FakeSMSService) ?
-                            " (You can find a text file under App_Data/SMS directory, as you haven't configured SMS service yet)" : "");
+                    mobile = mobile.Substring(0, 2) + new string('*', mobile.Length - 4) +
+                             mobile.Substring(mobile.Length - 2, 2);
+                    authenticationMessage = "Please enter code sent to your mobile phone with number " + mobile +
+                                            " in <span class='counter'>{0}</span> seconds." +
+                                            ((Dependency.Resolve<Administration.ISMSService>() is Administration
+                                                .FakeSMSService)
+                                                ? " (You can find a text file under App_Data/SMS directory, as you haven't configured SMS service yet)"
+                                                : "");
                 }
                 else
                 {
@@ -155,7 +198,7 @@ namespace Allocation.Membership.Pages
                         subject: "Your two-factor authentication code for Allocation login",
                         body: "Please use code " + data.TwoFactorCode + " for Allocation login.");
                     authenticationMessage = "Please enter code sent to your e-mail adress in {0} seconds." +
-                        " (If you didn't configure an SMTP server, you can find e-mails under App_Data/Mail directory";
+                                            " (If you didn't configure an SMTP server, you can find e-mails under App_Data/Mail directory";
                 }
 
                 DistributedCache.Set("TwoFactorAuth:" + twoFactorGuid, data, TimeSpan.FromMinutes(2));

@@ -1728,6 +1728,7 @@
     <Compile Include="Modules\Common\BackgroundTasks\PeriodicBackgroundTask.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\SqlApplicationLock.cs" />
     <Compile Include="Modules\Common\BatchDeleteRequest.cs" />
+    <Compile Include="Modules\Common\LoginResponse.cs" />
     <Compile Include="Modules\Common\Mail\MailColumns.cs" />
     <Compile Include="Modules\Common\Mail\MailEndpoint.cs" />
     <Compile Include="Modules\Common\Mail\MailForm.cs" />
