@@ -1,5 +1,10 @@
 ﻿
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using Allocation.Modules.Common;
 
 namespace Allocation.Allot.Repositories
 {
@@ -39,12 +44,95 @@ namespace Allocation.Allot.Repositories
             return new MyListHandler().Process(connection, request);
         }
 
-        public List<MyRow> GetList( ListRequest request)
+        public IEnumerable<MyRow> GetList(ListRequest request)
         {
             using (var connection = SqlConnections.NewFor<MyRow>())
             {
                 return new MyListHandler().Process(connection, request).Entities;
             }
+        }
+
+        public LoginResponse Update(IList<MyRow> rows)
+        {
+            LoginResponse loginResponse = new LoginResponse();
+
+            if (rows.Any())
+            {
+                var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                var trans = connection.BeginTransaction();
+                try
+                {
+                    #region will be removed
+                    //using (var connection = SqlConnections.NewFor<MyRow>())
+                    //{
+                    //var uow = new UnitOfWork(connection);
+
+                    //foreach (var row in rows)
+                    //{
+                    //    if (row.Id.HasValue)
+                    //    {
+                    //        new MySaveHandler().Process(uow, new SaveRequest<MyRow>
+                    //        {
+                    //            Entity = row,
+                    //            EntityId = row.Id
+                    //        }, SaveRequestType.Update);
+                    //    }
+                    //    else
+                    //    {
+                    //        new MySaveHandler().Process(uow, new SaveRequest<MyRow>
+                    //        {
+                    //            Entity = row,
+                    //        }, SaveRequestType.Create);
+                    //    }
+                    //} 
+                    #endregion
+
+                    StringBuilder sb = new StringBuilder();
+                    var user = (UserDefinition)Authorization.UserDefinition;
+                    foreach (var row in rows)
+                    {
+                        if (row.Id.HasValue)
+                        {
+                            if (row.IsChecked != null)
+                                sb.Append(
+                                    $"update [allot].[DeclarationData] set IsChecked={(int)row.IsChecked} where id ={row.Id} and TenantId = {user.TenantId};");
+                        }
+                        else
+                        {
+                            sb.Append(
+                                $"Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount) values('{row.MasterAwb}','{row.SubAwb}','{row.Amount}');");
+                        }
+                    }
+                    var cmd = connection.CreateCommand();
+                    cmd.Transaction = trans;
+                    cmd.CommandText = sb.ToString();
+                    cmd.ExecuteNonQuery();
+                    trans.Commit();
+
+                    loginResponse.IsSuccess = true;
+                    loginResponse.Result = "数据更新成功";
+                    return loginResponse;
+                }
+                catch (Exception ex)
+                {
+                    ex.Log();
+                    loginResponse.IsSuccess = false;
+                    loginResponse.Result = "数据更新失败";
+                    trans.Rollback();
+                    return loginResponse;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            loginResponse.IsSuccess = false;
+            loginResponse.Result = "更新的不能为空";
+            return loginResponse;
         }
 
         private class MySaveHandler : SaveRequestHandler<MyRow> { }

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
 using Allocation.Administration.Repositories;
+using Allocation.Allot.Entities;
 using Allocation.Allot.Repositories;
 using Allocation.Common;
 using Allocation.Membership;
@@ -58,6 +59,11 @@ namespace Allocation.Controllers
         {
             var list = declarationDataRepository.GetList(new ListRequest());
             return BuildSuccessResult(HttpStatusCode.OK, list);
+        }
+
+        public HttpResponseMessage Put(IList<DeclarationDataRow> declarationDataRows)
+        {
+            return BuildSuccessResult(HttpStatusCode.OK, declarationDataRepository.Update(declarationDataRows));
         }
 
         private void CheckTwoFactorAuthentication(string username, LoginRequest request)
