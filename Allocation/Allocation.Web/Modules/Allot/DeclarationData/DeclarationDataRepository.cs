@@ -93,18 +93,41 @@ namespace Allocation.Allot.Repositories
 
                     StringBuilder sb = new StringBuilder();
                     var user = (UserDefinition)Authorization.UserDefinition;
-                    foreach (var row in rows)
+                    //这个是管理员在操作
+                    if (Authorization.HasPermission(Administration.PermissionKeys.Tenants))
                     {
-                        if (row.Id.HasValue)
+                        foreach (var row in rows)
                         {
-                            if (row.IsChecked != null)
-                                sb.Append(
-                                    $"update [allot].[DeclarationData] set IsChecked={(int)row.IsChecked} where id ={row.Id} and TenantId = {user.TenantId};");
+                            if (row.Id.HasValue && row.Id != 0)
+                            {
+                                if (row.IsChecked != null)
+                                    sb.Append(
+                                        $"update [allot].[DeclarationData] set IsChecked={(int)row.IsChecked} where id ={row.Id}");
+                            }
+                            else
+                            {
+                                if (row.IsChecked != null)
+                                    sb.Append(
+                                    $"Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount, IsChecked) values('{row.MasterAwb}','{row.SubAwb}',{row.Amount},{(int)row.IsChecked});");
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        foreach (var row in rows)
                         {
-                            sb.Append(
-                                $"Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount) values('{row.MasterAwb}','{row.SubAwb}','{row.Amount}');");
+                            if (row.Id.HasValue)
+                            {
+                                if (row.IsChecked != null)
+                                    sb.Append(
+                                        $"update [allot].[DeclarationData] set IsChecked={(int)row.IsChecked} where id ={row.Id} and TenantId = {user.TenantId};");
+                            }
+                            else
+                            {
+                                if (row.IsChecked != null)
+                                    sb.Append(
+                                        $"Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount, IsChecked, TenantId) values('{row.MasterAwb}','{row.SubAwb}',{row.Amount},{(int)row.IsChecked} ,{user.TenantId});");
+                            }
                         }
                     }
                     var cmd = connection.CreateCommand();
