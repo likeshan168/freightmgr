@@ -108,7 +108,7 @@
                     Common.ReportHelper.execute({
                         reportKey: 'Allot.NormalReport',
                         params: {
-                            MasterAwbs: eq.MasterAwb,
+                            MasterAwb: eq.MasterAwb,
                             SubAwb: eq.SubAwb
                         }
                     });
@@ -123,7 +123,7 @@
                     Common.ReportHelper.execute({
                        reportKey: 'Allot.AbnormalReport',
                         params: {
-                            MasterAwbs: eq.MasterAwb,
+                            MasterAwb: eq.MasterAwb,
                             SubAwb: eq.SubAwb
                         }
                     });

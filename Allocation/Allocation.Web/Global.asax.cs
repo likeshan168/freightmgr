@@ -84,6 +84,7 @@ namespace Allocation
         public BrowserJsonFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/xml"));
             SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
         }
 
