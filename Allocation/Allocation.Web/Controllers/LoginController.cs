@@ -84,8 +84,29 @@ namespace Allocation.Controllers
 
         public HttpResponseMessage Get()
         {
-            var list = declarationDataRepository.GetList(new ListRequest());
-            return BuildSuccessResult(HttpStatusCode.OK, list);
+            var response = new GetListResponse<DeclarationDataRow>();
+            try
+            {
+                var list = declarationDataRepository.GetList(new ListRequest());
+                response.IsSuccess = true;
+                response.Message = "数据获取成功";
+                response.Entities = list;
+                return BuildSuccessResult(HttpStatusCode.OK, response);
+            }
+            catch (ValidationError err)
+            {
+                err.Log();
+                response.IsSuccess = false;
+                response.Message = "登录已过期，请重新登录";
+                return BuildSuccessResult(HttpStatusCode.Forbidden, response);
+            }
+            catch (Exception ex)
+            {
+                ex.Log();
+                response.IsSuccess = false;
+                response.Message = "服务器发生异常";
+                return BuildSuccessResult(HttpStatusCode.InternalServerError, response);
+            }
         }
 
         public HttpResponseMessage Put(IList<DeclarationDataRow> declarationDataRows)
