@@ -28,6 +28,7 @@
   "Navigation.Administration/Tenants": "租户管理",
   "Navigation.Allot": "盘点",
   "Navigation.Allot/Declaration Data": "运单信息",
+  "Navigation.Dashboard": "欢迎使用",
   "Navigation.SiteTitle": "海口快件监管系统",
   "Permission.Administration:Tenants": "租户",
   "Permission.Allot:DeclarationData:": "运单信息",

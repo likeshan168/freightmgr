@@ -1740,6 +1740,7 @@
     <Compile Include="Modules\Allot\DeclarationData\AbnormalReport.cs" />
     <Compile Include="Modules\Allot\DeclarationData\NormalReport.cs" />
     <Compile Include="Modules\Allot\DeclarationData\StateKind.cs" />
+    <Compile Include="Modules\Common\AppResponse.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskManager.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskRow.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskStatus.cs" />

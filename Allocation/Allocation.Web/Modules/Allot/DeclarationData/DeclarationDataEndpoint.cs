@@ -78,7 +78,14 @@ namespace Allocation.Allot.Endpoints
             var user = (UserDefinition)Authorization.UserDefinition;
             foreach (var id in request.EntityIds)
             {
-                sb.Append($"delete from [allot].[DeclarationData] where Id={id} and TenantId={user.TenantId};");
+                if (Authorization.HasPermission(Administration.PermissionKeys.Tenants))
+                {
+                    sb.Append($"delete from [allot].[DeclarationData] where Id={id}");
+                }
+                else
+                {
+                    sb.Append($"delete from [allot].[DeclarationData] where Id={id} and TenantId={user.TenantId};");
+                }
             }
             if (sb.Length > 0)
             {

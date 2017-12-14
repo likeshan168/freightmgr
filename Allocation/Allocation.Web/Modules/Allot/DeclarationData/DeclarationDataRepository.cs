@@ -52,9 +52,9 @@ namespace Allocation.Allot.Repositories
             }
         }
 
-        public LoginResponse Update(IList<MyRow> rows)
+        public AppResponse Update(IList<MyRow> rows)
         {
-            LoginResponse loginResponse = new LoginResponse();
+            AppResponse loginResponse = new AppResponse();
 
             if (rows.Any())
             {

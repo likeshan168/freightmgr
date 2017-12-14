@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
+using Allocation.Administration.Entities;
 using Allocation.Administration.Repositories;
 using Allocation.Allot.Entities;
 using Allocation.Allot.Repositories;
@@ -13,7 +17,9 @@ using Allocation.Membership;
 using Allocation.Modules.Common;
 using Serenity;
 using Serenity.Abstractions;
+using Serenity.Data;
 using Serenity.Services;
+using Authorization = Serenity.Authorization;
 
 namespace Allocation.Controllers
 {
@@ -40,6 +46,7 @@ namespace Allocation.Controllers
 
             var username = request.Username;
 
+
             if (Dependency.Resolve<IAuthenticationService>().Validate(ref username, request.Password))
             {
                 CheckTwoFactorAuthentication(username, request);
@@ -47,6 +54,26 @@ namespace Allocation.Controllers
                 WebSecurityHelper.SetAuthenticationTicket(username, false);
                 response.IsSuccess = true;
                 response.Result = "登录成功";
+                //var user = (UserDefinition) Authorization.UserDefinition;
+                if (Dependency.Resolve<IUserRetrieveService>().ByUsername(username) is UserDefinition user)
+                {
+                    response.TenantId = user.TenantId;
+                    string sql = $"select * from [dbo].[UserRoles] where UserId = {user.UserId}";
+                    int roleId = 0;
+                    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+                    {
+                        var userRole = conn.Query<UserRoleRow>(sql).FirstOrDefault();
+                        if (userRole != null && userRole.RoleId != null) roleId = userRole.RoleId.Value;
+                    }
+                   
+                    //var userRole = new UserRoleRepository().List(SqlConnections.NewFor<UserRoleRow>(), new Administration.UserRoleListRequest{UserID = user.UserId}).Entities.First();
+                    if (username == "admin" || roleId == 1)
+                    {
+                        response.IsAdmin = true;
+                    }
+                }
+
+
                 return BuildSuccessResult(HttpStatusCode.OK, response);
             }
 
