@@ -50,6 +50,7 @@
                     var dialog = new DeclarationDataExcelImportDialog();
                     dialog.element.on('dialogclose', () => {
                         this.refresh();
+                        Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
                         dialog = null;
                     });
                     dialog.dialogOpen();
@@ -72,7 +73,7 @@
                 onClick: () => {
                     let selectedKeys = this.rowSelection.getSelectedKeys();
                     console.log(selectedKeys);
-                    if (selectedKeys.length == 0) {
+                    if (selectedKeys.length === 0) {
                         Q.notifyWarning("请选择需要删除的行");
                     } else {
                         Q.confirm("确认删除吗？删除之后相关的信息会受影响", () => {
@@ -80,6 +81,7 @@
                                 EntityIds: selectedKeys
                             }, response => {
                                 this.refresh();
+                                Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
                             });
                         });
                     }
@@ -175,6 +177,7 @@
                             EntityId: item.Id,
                         }, response => {
                             this.refresh();
+                            Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
                         });
                     });
                 }

@@ -1867,6 +1867,10 @@ var Allocation;
             DeclarationDataDialog.prototype.getLocalTextPrefix = function () { return Allot.DeclarationDataRow.localTextPrefix; };
             DeclarationDataDialog.prototype.getNameProperty = function () { return Allot.DeclarationDataRow.nameProperty; };
             DeclarationDataDialog.prototype.getService = function () { return Allot.DeclarationDataService.baseUrl; };
+            DeclarationDataDialog.prototype.onSaveSuccess = function (response) {
+                _super.prototype.onSaveSuccess.call(this, response);
+                Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
+            };
             DeclarationDataDialog = __decorate([
                 Serenity.Decorators.registerClass(),
                 Serenity.Decorators.responsive(),
@@ -1973,6 +1977,7 @@ var Allocation;
                         var dialog = new Allot.DeclarationDataExcelImportDialog();
                         dialog.element.on('dialogclose', function () {
                             _this.refresh();
+                            Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
                             dialog = null;
                         });
                         dialog.dialogOpen();
@@ -1993,7 +1998,7 @@ var Allocation;
                     onClick: function () {
                         var selectedKeys = _this.rowSelection.getSelectedKeys();
                         console.log(selectedKeys);
-                        if (selectedKeys.length == 0) {
+                        if (selectedKeys.length === 0) {
                             Q.notifyWarning("请选择需要删除的行");
                         }
                         else {
@@ -2002,6 +2007,7 @@ var Allocation;
                                     EntityIds: selectedKeys
                                 }, function (response) {
                                     _this.refresh();
+                                    Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
                                 });
                             });
                         }
@@ -2087,6 +2093,7 @@ var Allocation;
                                 EntityId: item.Id,
                             }, function (response) {
                                 _this.refresh();
+                                Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
                             });
                         });
                     }

@@ -1,5 +1,5 @@
-﻿
-namespace Allocation.Allot {
+﻿namespace Allocation.Allot {
+    import SaveResponse = Serenity.SaveResponse;
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.responsive()
@@ -13,5 +13,11 @@ namespace Allocation.Allot {
 
         public form = new DeclarationDataForm(this.idPrefix);
 
+
+        protected onSaveSuccess(response: SaveResponse): void {
+            super.onSaveSuccess(response);
+
+            Q.reloadLookup("Allocation.DeclarationDataMasterAwb");
+        }
     }
 }

@@ -8,12 +8,11 @@ using Serenity.Web;
 
 namespace Allocation.Modules.Allot.DeclarationData
 {
-    [LookupScript("Allocation.DeclarationDataMasterAwb")]
+    [LookupScript("Allocation.DeclarationDataMasterAwb", Expiration = -1)]
     public class DeclarationDataMasterAwbLookup : RowLookupScript<DeclarationDataRow>
     {
         public DeclarationDataMasterAwbLookup()
         {
-            Expiration = TimeSpan.FromDays(-1);//可以解决切换不同用户时显示不同的主单号
             IdField = TextField = DeclarationDataRow.Fields.MasterAwb.PropertyName;
         }
 
@@ -40,7 +39,7 @@ namespace Allocation.Modules.Allot.DeclarationData
                         new Criteria(fld.MasterAwb).IsNotNull() &
                         new Criteria(fld.TenantId) == user.TenantId);
             }
-            
+
             //new Criteria(fld.ApplicationUnit) != "" &
             //new Criteria(fld.ApplicationUnit).IsNotNull());
         }

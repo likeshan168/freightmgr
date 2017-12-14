@@ -65,7 +65,7 @@ namespace Allocation.Allot.Endpoints
                     masterNo = masterNo.Trim();
                     var yundan = uow.Connection.TryFirst<MyRow>(q => q
                         .Select(p.SubAwb, p.MasterAwb, p.Id)
-                        .Where(p.SubAwb == no && p.MasterAwb == masterNo));
+                        .Where(p.SubAwb == no && p.MasterAwb == masterNo && p.TenantId == user.TenantId));
 
                     if (yundan == null)
                     {

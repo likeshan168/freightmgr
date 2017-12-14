@@ -1031,6 +1031,7 @@ declare namespace Allocation.Administration {
     }
 }
 declare namespace Allocation.Allot {
+    import SaveResponse = Serenity.SaveResponse;
     class DeclarationDataDialog extends Serenity.EntityDialog<DeclarationDataRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1038,6 +1039,7 @@ declare namespace Allocation.Allot {
         protected getNameProperty(): string;
         protected getService(): string;
         form: DeclarationDataForm;
+        protected onSaveSuccess(response: SaveResponse): void;
     }
 }
 declare namespace Allocation.Allot {

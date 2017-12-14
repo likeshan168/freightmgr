@@ -106,9 +106,10 @@ namespace Allocation.Allot.Repositories
                             }
                             else
                             {
+                                //还要判断是否在网页上进行过添加，如果进行过，那就不需要再进行了
                                 if (row.IsChecked != null)
                                     sb.Append(
-                                    $"Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount, IsChecked) values('{row.MasterAwb}','{row.SubAwb}',{row.Amount},{(int)row.IsChecked});");
+                                    $"if not exists (select Id from [allot].[DeclarationData] where MasterAwb='{row.MasterAwb}' and SubAwb='{row.SubAwb}') Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount, IsChecked) values('{row.MasterAwb}','{row.SubAwb}',{row.Amount},{(int)row.IsChecked});");
                             }
                         }
                     }
