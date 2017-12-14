@@ -117,7 +117,7 @@ namespace Allocation.Allot.Repositories
                     {
                         foreach (var row in rows)
                         {
-                            if (row.Id.HasValue)
+                            if (row.Id.HasValue && row.Id != 0)
                             {
                                 if (row.IsChecked != null)
                                     sb.Append(
@@ -127,7 +127,7 @@ namespace Allocation.Allot.Repositories
                             {
                                 if (row.IsChecked != null)
                                     sb.Append(
-                                        $"Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount, IsChecked, TenantId) values('{row.MasterAwb}','{row.SubAwb}',{row.Amount},{(int)row.IsChecked} ,{user.TenantId});");
+                                        $"if not exists (select Id from [allot].[DeclarationData] where MasterAwb='{row.MasterAwb}' and SubAwb='{row.SubAwb}' and TenantId={user.TenantId}) Insert into [allot].[DeclarationData](MasterAwb,SubAwb,Amount, IsChecked, TenantId) values('{row.MasterAwb}','{row.SubAwb}',{row.Amount},{(int)row.IsChecked} ,{user.TenantId});");
                             }
                         }
                     }
