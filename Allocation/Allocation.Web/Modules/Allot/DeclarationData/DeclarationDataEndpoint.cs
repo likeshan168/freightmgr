@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Allocation.Modules.Common;
@@ -47,6 +47,10 @@ namespace Allocation.Allot.Endpoints
         [HttpPost]
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
+            if (request.Take == 0)
+            {
+                return new ListResponse<MyRow> {Entities = new List<MyRow>(), Skip = 0, Take = 0, TotalCount = 0};
+            }
             return new MyRepository().List(connection, request);
         }
 
@@ -65,8 +69,8 @@ namespace Allocation.Allot.Endpoints
             using (FileStream fs = file.OpenRead())
             {
                 BinaryReader r = new BinaryReader(fs);
-                r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
-                byte[] bytes = r.ReadBytes((int)r.BaseStream.Length);
+                r.BaseStream.Seek(0, SeekOrigin.Begin); //将文件指针设置到文件开
+                byte[] bytes = r.ReadBytes((int) r.BaseStream.Length);
                 return ExcelContentResult.Create(bytes, "Template.xlsx");
             }
         }
@@ -75,7 +79,7 @@ namespace Allocation.Allot.Endpoints
         public DeleteResponse BatchDelete(IUnitOfWork uow, BatchDeleteRequest request)
         {
             StringBuilder sb = new StringBuilder();
-            var user = (UserDefinition)Authorization.UserDefinition;
+            var user = (UserDefinition) Authorization.UserDefinition;
             foreach (var id in request.EntityIds)
             {
                 if (Authorization.HasPermission(Administration.PermissionKeys.Tenants))

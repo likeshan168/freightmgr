@@ -29,6 +29,7 @@
 
         constructor(container: JQuery) {
             super(container);
+
             $("input.is-subawb").on("change", (e) => this.subawbEvent = e);
         }
 
@@ -123,7 +124,7 @@
                 onClick: () => {
                     let eq = this.view.params.EqualityFilter;
                     Common.ReportHelper.execute({
-                       reportKey: 'Allot.AbnormalReport',
+                        reportKey: 'Allot.AbnormalReport',
                         params: {
                             MasterAwb: eq.MasterAwb,
                             SubAwb: eq.SubAwb
@@ -133,7 +134,7 @@
                 separator: true
             });
             // }
-            
+
             return buttons;
         }
 
@@ -189,12 +190,26 @@
             opt.enableTextSelectionOnCells = true;
             opt.selectedCellCssClass = "slick-row-selected";
             opt.enableCellNavigation = true;
+            opt.showFooterRow = true;
             return opt;
         }
 
         protected createSlickGrid(): Slick.Grid {
             let grid = super.createSlickGrid();
             grid.setSelectionModel(new Slick.RowSelectionModel());
+
+            grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+
+            this.view.setGrouping([{
+                getter: 'MasterAwb',
+                aggregateCollapsed: true
+            }]);
+            this.view.setSummaryOptions({
+                aggregators: [
+                    new Slick.Aggregators.Sum('Amount')
+                ]
+            });
+
             return grid;
         }
 
@@ -248,7 +263,7 @@
             filter.title = "扫分单号点货";
             filter.element = e => {
                 e.addClass("is-subawb");
-            }
+            };
 
             return filters;
         }
