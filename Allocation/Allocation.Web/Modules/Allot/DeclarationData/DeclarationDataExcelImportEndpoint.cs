@@ -88,6 +88,8 @@ namespace Allocation.Allot.Endpoints
                     double.TryParse(worksheet.Cells[row, 5].GetValue<string>(), out double weight);
                     yundan.Weight = weight;
                     yundan.Description = worksheet.Cells[row, 6].GetValue<string>();
+                    yundan.Status = worksheet.Cells[row, 7].GetValue<string>();
+
                     yundan.IsChecked = Entities.StateKind.NoChecked;
                     //yundan.TenantId = user.TenantId;
                     if (isCreat)

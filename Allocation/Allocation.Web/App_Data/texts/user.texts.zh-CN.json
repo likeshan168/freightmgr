@@ -18,6 +18,7 @@
   "Db.Allot.DeclarationData.Flight": "航班号",
   "Db.Allot.DeclarationData.IsChecked": "是否已到货",
   "Db.Allot.DeclarationData.MasterAwb": "主单号",
+  "Db.Allot.DeclarationData.Status": "状态",
   "Db.Allot.DeclarationData.SubAwb": "分单号",
   "Db.Allot.DeclarationData.TenantName": "申报单位",
   "Db.Allot.DeclarationData.Weight": "重量",

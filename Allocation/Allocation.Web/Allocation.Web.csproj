@@ -1701,6 +1701,7 @@
     </Compile>
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170211_152700_Mailing.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170304_085200_TwoFactorAuth.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180303_203500_AddStatusInDeclarationData.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_145000_MultiTenant.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_144900_MultiTenant.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_131400_CreateView.cs" />
@@ -2023,10 +2024,11 @@
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:53423/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:53423/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://localhost:5000/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

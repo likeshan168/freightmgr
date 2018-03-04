@@ -40,5 +40,6 @@ namespace Allocation.Allot.Columns
         public Int32 Amount { get; set; }
         public Double Weight { get; set; }
         public String Description { get; set; }
+        public String Status { get; set; }
     }
 }

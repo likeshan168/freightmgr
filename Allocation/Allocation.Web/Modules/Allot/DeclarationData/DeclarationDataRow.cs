@@ -66,6 +66,13 @@ namespace Allocation.Allot.Entities
             set { Fields.Description[this] = value; }
         }
 
+        [DisplayName("Status"), Size(20)]
+        public String Status
+        {
+            get { return Fields.Status[this]; }
+            set { Fields.Status[this] = value; }
+        }
+
         //[DisplayName("Is Checked")]
         //public Boolean? IsChecked
         //{
@@ -133,6 +140,7 @@ namespace Allocation.Allot.Entities
             public Int32Field Amount;
             public DoubleField Weight;
             public StringField Description;
+            public StringField Status;
             public StringField Flight;
             public Int32Field IsChecked;
             public readonly Int32Field TenantId;

@@ -190,7 +190,7 @@
             opt.enableTextSelectionOnCells = true;
             opt.selectedCellCssClass = "slick-row-selected";
             opt.enableCellNavigation = true;
-            opt.showFooterRow = true;
+            //opt.showFooterRow = true;
             return opt;
         }
 
@@ -198,17 +198,17 @@
             let grid = super.createSlickGrid();
             grid.setSelectionModel(new Slick.RowSelectionModel());
 
-            grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+            //grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
 
-            this.view.setGrouping([{
-                getter: 'MasterAwb',
-                aggregateCollapsed: true
-            }]);
-            this.view.setSummaryOptions({
-                aggregators: [
-                    new Slick.Aggregators.Sum('Amount')
-                ]
-            });
+            //this.view.setGrouping([{
+            //    getter: 'MasterAwb',
+            //    aggregateCollapsed: true
+            //}]);
+            //this.view.setSummaryOptions({
+            //    aggregators: [
+            //        new Slick.Aggregators.Sum('Amount')
+            //    ]
+            //});
 
             return grid;
         }
