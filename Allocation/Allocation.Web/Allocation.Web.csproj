@@ -531,7 +531,9 @@
     <Content Include="Content\serenity\images\xml.png" />
     <Content Include="Content\serenity\images\zones-stack.png" />
     <Content Include="Content\serenity\images\zoom.png" />
+    <Content Include="Content\serenity\myimages\export.png" />
     <Content Include="Content\serenity\myimages\flight.png" />
+    <Content Include="Content\serenity\myimages\import.png" />
     <Content Include="Content\serenity\myimages\nochecked.png" />
     <Content Include="Content\serenity\myimages\checked.png" />
     <Content Include="Content\serenity\myimages\checked16.png" />
@@ -643,6 +645,7 @@
     <Content Include="App_Data\texts\user.texts.zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ExcelTemplate\IdCardTemplate.xlsx" />
     <None Include="packages.config" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1347,6 +1350,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Administration.TwoFactorAuthType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.ApiColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Allot.DeclarationDataColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1354,6 +1360,15 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Allot.DeclarationDataExcelImportService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.IdCardColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.IdCardExcelImportEndpointService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.IdCardExcelImportForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Allot.StateKind.ts">
@@ -1387,6 +1402,7 @@
     <TypeScriptCompile Include="Modules\Allot\DeclarationData\FlightFormatter.ts" />
     <TypeScriptCompile Include="Modules\Allot\DeclarationData\IsCheckedFormatter.ts" />
     <TypeScriptCompile Include="Modules\Allot\DeclarationData\TenantFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Allot\IdCard\IdCardExcelImportDialog.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery.blockui\index.d.ts" />
@@ -1671,6 +1687,30 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <Content Include="wwwroot\Content\site\site.administration.less" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.ApiRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.ApiService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Allot\Api\ApiIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Allot\Api\ApiDialog.ts" />
+    <TypeScriptCompile Include="Modules\Allot\Api\ApiGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.ApiForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.IdCardRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.IdCardService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Allot\IdCard\IdCardIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Allot\IdCard\IdCardDialog.ts" />
+    <TypeScriptCompile Include="Modules\Allot\IdCard\IdCardGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Allot.IdCardForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1702,6 +1742,9 @@
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170211_152700_Mailing.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20170304_085200_TwoFactorAuth.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180303_203500_AddStatusInDeclarationData.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180326_101900_IdCard.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180326_101100_API.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180326_111000_AddReuseCountInAPI.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_145000_MultiTenant.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_144900_MultiTenant.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20171208_131400_CreateView.cs" />
@@ -1741,6 +1784,8 @@
     <Compile Include="Modules\Allot\DeclarationData\AbnormalReport.cs" />
     <Compile Include="Modules\Allot\DeclarationData\NormalReport.cs" />
     <Compile Include="Modules\Allot\DeclarationData\StateKind.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardExcelImportEndpoint.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardExcelImportForm.cs" />
     <Compile Include="Modules\Common\AppResponse.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskManager.cs" />
     <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskRow.cs" />
@@ -1872,6 +1917,18 @@
     <Compile Include="Modules\Administration\Tenants\TenantsPage.cs" />
     <Compile Include="Modules\Administration\Tenants\TenantsColumns.cs" />
     <Compile Include="Modules\Administration\Tenants\TenantsForm.cs" />
+    <Compile Include="Modules\Allot\Api\ApiRow.cs" />
+    <Compile Include="Modules\Allot\Api\ApiRepository.cs" />
+    <Compile Include="Modules\Allot\Api\ApiEndpoint.cs" />
+    <Compile Include="Modules\Allot\Api\ApiPage.cs" />
+    <Compile Include="Modules\Allot\Api\ApiColumns.cs" />
+    <Compile Include="Modules\Allot\Api\ApiForm.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardRow.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardRepository.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardEndpoint.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardPage.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardColumns.cs" />
+    <Compile Include="Modules\Allot\IdCard\IdCardForm.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

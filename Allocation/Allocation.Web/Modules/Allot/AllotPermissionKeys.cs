@@ -15,5 +15,13 @@ namespace Allocation.Allot
             public const string Modify = "Allot:DeclarationData:Modify";
             public const string View = "Allot:DeclarationData:View";
         }
+
+        [DisplayName("Api")]
+        public class Api
+        {
+            public const string Delete = "Allot:Api:Delete";
+            public const string Modify = "Allot:Api:Modify";
+            public const string View = "Allot:Api:View";
+        }
     }
 }

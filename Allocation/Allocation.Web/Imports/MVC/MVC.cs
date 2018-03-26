@@ -35,11 +35,21 @@ namespace MVC
 
         public static class Allot
         {
+            public static class Api
+            {
+                public const string ApiIndex = "~/Modules/Allot/Api/ApiIndex.cshtml";
+            }
+
             public static class DeclarationData
             {
                 public const string AbnormalReport = "~/Modules/Allot/DeclarationData/AbnormalReport.cshtml";
                 public const string DeclarationDataIndex = "~/Modules/Allot/DeclarationData/DeclarationDataIndex.cshtml";
                 public const string NormalReport = "~/Modules/Allot/DeclarationData/NormalReport.cshtml";
+            }
+
+            public static class IdCard
+            {
+                public const string IdCardIndex = "~/Modules/Allot/IdCard/IdCardIndex.cshtml";
             }
 
         }

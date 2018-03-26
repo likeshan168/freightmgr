@@ -7,6 +7,7 @@
         Amount?: number;
         Weight?: number;
         Description?: string;
+        Status?: string;
         Flight?: string;
         IsChecked?: StateKind;
         TenantId?: number;
@@ -31,6 +32,7 @@
             export declare const Amount: string;
             export declare const Weight: string;
             export declare const Description: string;
+            export declare const Status: string;
             export declare const Flight: string;
             export declare const IsChecked: string;
             export declare const TenantId: string;
@@ -45,6 +47,7 @@
             'Amount', 
             'Weight', 
             'Description', 
+            'Status', 
             'Flight', 
             'IsChecked', 
             'TenantId', 
