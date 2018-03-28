@@ -109,6 +109,8 @@ namespace Allocation.Allot.Endpoints
                             Entity = first,
                             EntityId = first.Id
                         });
+
+                        response.Updated = response.Updated + 1;
                     }
                     else
                     {

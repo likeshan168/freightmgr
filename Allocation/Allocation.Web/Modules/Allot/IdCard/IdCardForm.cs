@@ -20,5 +20,7 @@ namespace Allocation.Allot.Forms
         public DateTime RequestDate { get; set; }
         public String RequestIp { get; set; }
         public Decimal Price { get; set; }
+        [DefaultValue(0)]
+        public Int32 ReusedCount { get; set; }
     }
 }
