@@ -8,6 +8,7 @@
         RequestDate?: string;
         RequestIp?: string;
         Price?: number;
+        ReusedCount?: number;
     }
 
     export namespace IdCardRow {
@@ -24,6 +25,7 @@
             export declare const RequestDate: string;
             export declare const RequestIp: string;
             export declare const Price: string;
+            export declare const ReusedCount: string;
         }
 
         [
@@ -34,7 +36,8 @@
             'CheckResult', 
             'RequestDate', 
             'RequestIp', 
-            'Price'
+            'Price', 
+            'ReusedCount'
         ].forEach(x => (<any>Fields)[x] = x);
     }
 }

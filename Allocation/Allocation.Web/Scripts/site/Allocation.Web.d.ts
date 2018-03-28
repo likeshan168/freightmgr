@@ -1254,15 +1254,6 @@ declare namespace Allocation.Allot {
 declare namespace Allocation.Allot {
 }
 declare namespace Allocation.Allot {
-    namespace IdCardExcelImportEndpointService {
-        const baseUrl = "HasNoRoute/IdCardExcelImportEndpoint";
-        function ExcelImport(request: ExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const ExcelImport: string;
-        }
-    }
-}
-declare namespace Allocation.Allot {
     class IdCardExcelImportForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -1286,6 +1277,15 @@ declare namespace Allocation.Allot {
     }
 }
 declare namespace Allocation.Allot {
+    namespace IdCardInfoExcelImportService {
+        const baseUrl = "Allot/IdCardInfoExcelImport";
+        function ExcelImport(request: MyExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const ExcelImport: string;
+        }
+    }
+}
+declare namespace Allocation.Allot {
     interface IdCardRow {
         Id?: number;
         AuthenticationType?: string;
@@ -1295,6 +1295,7 @@ declare namespace Allocation.Allot {
         RequestDate?: string;
         RequestIp?: string;
         Price?: number;
+        ReusedCount?: number;
     }
     namespace IdCardRow {
         const idProperty = "Id";
@@ -1309,6 +1310,7 @@ declare namespace Allocation.Allot {
             const RequestDate: string;
             const RequestIp: string;
             const Price: string;
+            const ReusedCount: string;
         }
     }
 }
@@ -1630,6 +1632,12 @@ declare namespace Allocation.Membership {
 declare namespace Allocation.Modules.Common {
     interface BatchDeleteRequest extends Serenity.ServiceRequest {
         EntityIds?: any[];
+    }
+}
+declare namespace Allocation {
+    interface MyExcelImportRequest extends Serenity.ServiceRequest {
+        ApiId?: number;
+        FileName?: string;
     }
 }
 declare namespace Serenity.Reporting {

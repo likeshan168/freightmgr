@@ -1799,6 +1799,10 @@ var Allocation;
                         click: function () {
                             if (!_this.validateBeforeSave())
                                 return;
+                            if (Q.isEmptyOrNull(_this.form.ApiId.value)) {
+                                Q.notifyError("请选择验证的接口!");
+                                return;
+                            }
                             if (_this.form.FileName.value == null ||
                                 Q.isEmptyOrNull(_this.form.FileName.value.Filename)) {
                                 Q.notifyError("Please select a file!");
@@ -1808,7 +1812,9 @@ var Allocation;
                                 Q.notifyError("The only support excel file is above the excel 2007!");
                                 return;
                             }
-                            Allot.IdCardExcelImportEndpointService.ExcelImport({
+                            //IdCardExcelImportService.baseUrl = "Allot/DeclarationDataImport";
+                            Allot.IdCardInfoExcelImportService.ExcelImport({
+                                ApiId: parseInt(_this.form.ApiId.value),
                                 FileName: _this.form.FileName.value.Filename
                             }, function (response) {
                                 Q.notifyInfo('新增: ' + (response.Inserted || 0) +
@@ -4059,27 +4065,6 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
-        var IdCardExcelImportEndpointService;
-        (function (IdCardExcelImportEndpointService) {
-            IdCardExcelImportEndpointService.baseUrl = 'HasNoRoute/IdCardExcelImportEndpoint';
-            var Methods;
-            (function (Methods) {
-            })(Methods = IdCardExcelImportEndpointService.Methods || (IdCardExcelImportEndpointService.Methods = {}));
-            [
-                'ExcelImport'
-            ].forEach(function (x) {
-                IdCardExcelImportEndpointService[x] = function (r, s, o) {
-                    return Q.serviceRequest(IdCardExcelImportEndpointService.baseUrl + '/' + x, r, s, o);
-                };
-                Methods[x] = IdCardExcelImportEndpointService.baseUrl + '/' + x;
-            });
-        })(IdCardExcelImportEndpointService = Allot.IdCardExcelImportEndpointService || (Allot.IdCardExcelImportEndpointService = {}));
-    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
-})(Allocation || (Allocation = {}));
-var Allocation;
-(function (Allocation) {
-    var Allot;
-    (function (Allot) {
         var IdCardExcelImportForm = /** @class */ (function (_super) {
             __extends(IdCardExcelImportForm, _super);
             function IdCardExcelImportForm() {
@@ -4112,6 +4097,27 @@ var Allocation;
 (function (Allocation) {
     var Allot;
     (function (Allot) {
+        var IdCardInfoExcelImportService;
+        (function (IdCardInfoExcelImportService) {
+            IdCardInfoExcelImportService.baseUrl = 'Allot/IdCardInfoExcelImport';
+            var Methods;
+            (function (Methods) {
+            })(Methods = IdCardInfoExcelImportService.Methods || (IdCardInfoExcelImportService.Methods = {}));
+            [
+                'ExcelImport'
+            ].forEach(function (x) {
+                IdCardInfoExcelImportService[x] = function (r, s, o) {
+                    return Q.serviceRequest(IdCardInfoExcelImportService.baseUrl + '/' + x, r, s, o);
+                };
+                Methods[x] = IdCardInfoExcelImportService.baseUrl + '/' + x;
+            });
+        })(IdCardInfoExcelImportService = Allot.IdCardInfoExcelImportService || (Allot.IdCardInfoExcelImportService = {}));
+    })(Allot = Allocation.Allot || (Allocation.Allot = {}));
+})(Allocation || (Allocation = {}));
+var Allocation;
+(function (Allocation) {
+    var Allot;
+    (function (Allot) {
         var IdCardRow;
         (function (IdCardRow) {
             IdCardRow.idProperty = 'Id';
@@ -4128,7 +4134,8 @@ var Allocation;
                 'CheckResult',
                 'RequestDate',
                 'RequestIp',
-                'Price'
+                'Price',
+                'ReusedCount'
             ].forEach(function (x) { return Fields[x] = x; });
         })(IdCardRow = Allot.IdCardRow || (Allot.IdCardRow = {}));
     })(Allot = Allocation.Allot || (Allocation.Allot = {}));

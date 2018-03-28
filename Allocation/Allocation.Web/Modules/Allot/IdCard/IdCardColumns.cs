@@ -23,11 +23,13 @@ namespace Allocation.Allot.Columns
         public String CardNo { get; set; }
         [Width(100)]
         public String CheckResult { get; set; }
-        [Width(140)]
+        [Width(140), DateTimeFormatter(DisplayFormat ="yyyy-MM-dd HH:mm:ss"), QuickFilter, SortOrder(1, true)]
         public DateTime RequestDate { get; set; }
         [Width(120)]
         public String RequestIp { get; set; }
         [Width(80)]
         public Decimal Price { get; set; }
+        [Width(120)]
+        public Int32 ReusedCount { get; set; }
     }
 }

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
-using Allocation.Allot.Entities;
-using Serenity.ComponentModel;
+﻿
 
 namespace Allocation.Allot.Forms
 {
+    using System;
+    using System.ComponentModel;
+    using Allocation.Allot.Entities;
+    using Serenity.ComponentModel;
+
     [FormScript("Allot.IdCardExcelImport")]
     public class IdCardExcelImportForm
     {

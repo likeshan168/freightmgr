@@ -29,21 +29,21 @@ namespace Allocation.Allot.Entities
             set { Fields.AuthenticationType[this] = value; }
         }
 
-        [DisplayName("Name"), Size(30), NotNull]
+        [DisplayName("Name"), Size(30), NotNull, QuickSearch]
         public String Name
         {
             get { return Fields.Name[this]; }
             set { Fields.Name[this] = value; }
         }
 
-        [DisplayName("Card No"), Size(50), NotNull]
+        [DisplayName("Card No"), Size(50), NotNull, QuickSearch]
         public String CardNo
         {
             get { return Fields.CardNo[this]; }
             set { Fields.CardNo[this] = value; }
         }
 
-        [DisplayName("Check Result"), Size(50), NotNull]
+        [DisplayName("Check Result"), Size(50), NotNull, QuickSearch]
         public String CheckResult
         {
             get { return Fields.CheckResult[this]; }
@@ -70,6 +70,14 @@ namespace Allocation.Allot.Entities
             get { return Fields.Price[this]; }
             set { Fields.Price[this] = value; }
         }
+
+        [DisplayName("ReusedCount"), NotNull]
+        public Int32? ReusedCount
+        {
+            get { return Fields.ReusedCount[this]; }
+            set { Fields.ReusedCount[this] = value; }
+        }
+
 
         IIdField IIdRow.IdField
         {
@@ -98,6 +106,7 @@ namespace Allocation.Allot.Entities
             public DateTimeField RequestDate;
             public StringField RequestIp;
             public DecimalField Price;
+            public Int32Field ReusedCount;
 
             public RowFields()
                 : base()

@@ -37,8 +37,9 @@
                             Q.notifyError("The only support excel file is above the excel 2007!");
                             return;
                         }
-
-                        IdCardExcelImportEndpointService.ExcelImport({
+                        //IdCardExcelImportService.baseUrl = "Allot/DeclarationDataImport";
+                        IdCardInfoExcelImportService.ExcelImport({
+                            ApiId: parseInt(this.form.ApiId.value),
                             FileName: this.form.FileName.value.Filename
                         }, response => {
                             Q.notifyInfo(

@@ -9,6 +9,7 @@ namespace Allocation.Allot.Endpoints
     using System;
     using System.Data;
     using System.IO;
+    using System.Linq;
     using System.Web.Mvc;
     using MyRepository = Repositories.IdCardRepository;
     using MyRow = Entities.IdCardRow;
@@ -28,7 +29,7 @@ namespace Allocation.Allot.Endpoints
         {
             return new MyRepository().Update(uow, request);
         }
- 
+
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
@@ -50,7 +51,8 @@ namespace Allocation.Allot.Endpoints
         public FileContentResult ListExcel(IDbConnection connection, ListRequest request)
         {
             var data = List(connection, request).Entities;
-            var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.IdCardColumns));
+            var cols = request.IncludeColumns.Where(p => p != MyRow.Fields.ReusedCount.Name);
+            var report = new DynamicDataReport(data, cols, typeof(Columns.IdCardColumns));
             var bytes = new ReportRepository().Render(report);
             return ExcelContentResult.Create(bytes, "IdCard_" +
                                                     DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");

@@ -43,6 +43,7 @@
   "Db.Allot.IdCard.Price": "计费(元)",
   "Db.Allot.IdCard.RequestDate": "请求时间",
   "Db.Allot.IdCard.RequestIp": "请求IP",
+  "Db.Allot.IdCard.ReusedCount": "重复利用次数",
   "Enums.Allocation.StateKind.Checked": "已到货",
   "Enums.Allocation.StateKind.NoChecked": "未到货",
   "Enums.Allocation.StateKind.OverChecked": "溢装到货",
